@@ -503,3 +503,121 @@ footer .copyright {
     color: #aaa;
     font-weight: 600;
 }
+        /* ═══════════ TOPBAR FIXA (Padrão SNDLimp) ═══════════ */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: rgba(26, 26, 26, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(245, 166, 35, 0.25);
+            padding: 5px 5%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 8px;
+            min-height: 40px;
+        }
+        .sticky-header .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            justify-self: start;
+        }
+        .sticky-header .topbar-logo-text {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #F5A623;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .sticky-header .topbar-logo-sub {
+            font-size: 0.65rem;
+            color: #aaa;
+            display: block;
+            letter-spacing: 0;
+            text-transform: none;
+            font-weight: 400;
+        }
+        .menu-dropdown { position: relative; justify-self: center; }
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 10px 14px;
+            transition: color 0.3s ease;
+        }
+        .menu-toggle:hover { color: #F5A623; }
+        .menu-lista {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 6px;
+            background: #1e1e1e;
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            border-radius: 8px;
+            list-style: none;
+            min-width: 190px;
+            z-index: 10001;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            padding: 0;
+        }
+        .menu-lista li { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .menu-lista li:last-child { border-bottom: none; }
+        .menu-lista a {
+            display: block;
+            padding: 11px 16px;
+            color: #d6d6d6;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu-lista a:hover { background: rgba(245, 166, 35, 0.12); color: #F5A623; }
+        .menu-dropdown:focus-within .menu-lista,
+        .menu-dropdown:hover .menu-lista { display: block; }
+        .sticky-header .btn-cta {
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 50px;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.4);
+            justify-self: end;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .sticky-header .btn-cta:hover { background: #1fb950; }
+        .header-spacer { min-height: 40px; }
+
+        @media (max-width: 600px) {
+            .sticky-header {
+                padding: 6px 3%;
+                min-height: auto;
+                grid-template-columns: auto 1fr auto;
+                gap: 6px;
+            }
+            .sticky-header .topbar-logo-text { font-size: 0.9rem; }
+            .sticky-header .topbar-logo-sub { display: none; }
+            .menu-toggle { font-size: 0.82rem; padding: 6px 10px; }
+            .sticky-header .btn-cta { font-size: 0.68rem; padding: 6px 12px; }
+            .header-spacer { min-height: 50px; }
+        }
