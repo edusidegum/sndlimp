@@ -477,3 +477,29 @@ footer .copyright {
         grid-template-columns: 1fr;
     }
 }
+/* ── Cards da Galeria (usados também no Antes/Depois) ── */
+.galeria-card {
+    background: var(--card-bg);
+    border: 2px solid rgba(245, 166, 35, 0.2);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s, border-color 0.25s;
+}
+.galeria-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(245, 166, 35, 0.5);
+}
+.galeria-card img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+}
+.galeria-legenda {
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #aaa;
+    font-weight: 600;
+}
