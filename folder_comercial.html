@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpeza Técnica de Placas Solares - Sidegum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+
+        /* Header Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('hero_image.png') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .tagline {
+            font-size: 1.8em;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            padding: 10px 20px;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .hero .tagline-text {
+            background: none;
+            -webkit-text-fill-color: #e74c3c;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 50px 40px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 1.2em;
+        }
+
+        .section-content {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* SPIN Sections */
+        .situacao {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        }
+
+        .problema {
+            background: linear-gradient(to right, #fff5f5, #ffe5e5);
+        }
+
+        .implicacao {
+            background: linear-gradient(to right, #fff9e6, #ffedd5);
+        }
+
+        .necessidade {
+            background: linear-gradient(to right, #e8f5e9, #c8e6c9);
+        }
+
+        /* Image Grid */
+        .image-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .image-box {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .fonte {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        /* Stats Box */
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #e74c3c;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Equipment Section */
+        .equipment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .equipment .section-title {
+            color: white;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .equipment-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .equipment-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .equipment-description {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .equipment-description h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .equipment-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .equipment-description li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .equipment-description li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .contact .section-title {
+            color: white;
+            justify-content: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #11998e;
+        }
+
+        .contact-card p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .contact-card .phone {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 40px;
+            margin-top: 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .location {
+            font-size: 1.2em;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero .tagline {
+                font-size: 1.3em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .image-comparison,
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .container {
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>🧼 Limpeza Técnica de Placas Solares</h1>
+                <div class="tagline">
+                    <span class="tagline-text">🌞 Placa suja não gera energia.<br>Placa limpa é dinheiro no bolso!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Situação (S) -->
+        <div class="section situacao">
+            <h2 class="section-title">
+                <span class="section-icon">✅</span>
+                Situação
+            </h2>
+            <div class="section-content">
+                <p>Você investiu em energia solar para economizar e gerar retorno. Mas será que suas placas estão entregando tudo o que podem?</p>
+                <p style="margin-top: 20px;">A energia solar é um investimento inteligente que promete economia na conta de luz e retorno financeiro a longo prazo. No entanto, muitos proprietários de sistemas fotovoltaicos não percebem que o desempenho de suas placas pode estar comprometido silenciosamente.</p>
+            </div>
+        </div>
+
+        <!-- Problema (P) -->
+        <div class="section problema">
+            <h2 class="section-title">
+                <span class="section-icon">⚠️</span>
+                Problema
+            </h2>
+            <div class="section-content">
+                <p><strong>A sujeira acumulada — poeira, fuligem, poluição e dejetos de pássaros — pode reduzir a eficiência das placas em até 50%.</strong></p>
+                <p style="margin-top: 15px;">E o pior: isso acontece de forma silenciosa, sem alertas no sistema.</p>
+                
+                <div class="image-comparison">
+                    <div class="image-box">
+                        <img src="problema_sujeira.png" alt="Comparação placas sujas e limpas">
+                        <div class="image-label">Impacto Visível da Sujeira</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="antes_depois.jpg" alt="Antes e depois da limpeza">
+                        <div class="image-label">Antes e Depois da Limpeza</div>
+                    </div>
+                </div>
+
+                <div class="stats-box">
+                    <div class="stat-item">
+                        <div class="stat-number">50%</div>
+                        <div class="stat-label">Perda de eficiência com sujeira acumulada</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Alertas do sistema sobre sujeira</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implicação (I) -->
+        <div class="section implicacao">
+            <h2 class="section-title">
+                <span class="section-icon">📉</span>
+                Implicação
+            </h2>
+            <div class="section-content">
+                <p><strong>Veja no gráfico abaixo como a opacidade afeta diretamente a geração de energia:</strong></p>
+                
+                <div class="chart-container">
+                    <img src="grafico_eficiencia.png" alt="Gráfico de eficiência">
+                </div>
+
+                <div class="stats-box" style="margin-top: 30px;">
+                    <div class="stat-item">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Geração com 10% de sujeira</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">Geração com 15% de sujeira</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50%</div>
+                        <div class="stat-label">Geração com 30% de sujeira</div>
+                    </div>
+                </div>
+
+                <p class="fonte">📊 Fonte: Estudo UFU – Sistema de Monitoramento para Detecção de Falhas em Placas Fotovoltaicas</p>
+            </div>
+        </div>
+
+        <!-- Necessidade de Solução (N) -->
+        <div class="section necessidade">
+            <h2 class="section-title">
+                <span class="section-icon">💡</span>
+                Necessidade de Solução
+            </h2>
+            <div class="section-content">
+                <p><strong>Com uma limpeza técnica e especializada, você recupera até 25% da eficiência perdida, acelera o retorno do investimento e protege a vida útil do sistema.</strong></p>
+                
+                <div class="stats-box" style="margin-top: 30px;">
+                    <div class="stat-item" style="border-left-color: #4caf50;">
+                        <div class="stat-number" style="color: #4caf50;">+25%</div>
+                        <div class="stat-label">Recuperação de eficiência</div>
+                    </div>
+                    <div class="stat-item" style="border-left-color: #4caf50;">
+                        <div class="stat-number" style="color: #4caf50;">💰</div>
+                        <div class="stat-label">Retorno mais rápido do investimento</div>
+                    </div>
+                    <div class="stat-item" style="border-left-color: #4caf50;">
+                        <div class="stat-number" style="color: #4caf50;">🛡️</div>
+                        <div class="stat-label">Proteção da vida útil do sistema</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipamento Profissional -->
+        <div class="section equipment">
+            <h2 class="section-title">
+                <span class="section-icon">🛠️</span>
+                Equipamento Profissional
+            </h2>
+            <div class="equipment-grid">
+                <div class="equipment-image">
+                    <img src="equipamento1.jpg" alt="Equipamento de limpeza">
+                </div>
+                <div class="equipment-description">
+                    <h3>Tecnologia de Ponta</h3>
+                    <p>Utilizamos escovas rotativas elétricas alimentadas por água, com tecnologia leve e segura para painéis fotovoltaicos.</p>
+                    <ul>
+                        <li>Escovas rotativas de alta eficiência</li>
+                        <li>Sistema de alimentação por água purificada</li>
+                        <li>Equipamento leve que não danifica os painéis</li>
+                        <li>Limpeza profunda sem riscos de arranhões</li>
+                        <li>Tecnologia aprovada pelos fabricantes</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="equipment-grid" style="margin-top: 30px;">
+                <div class="equipment-description">
+                    <h3>Processo Seguro e Eficiente</h3>
+                    <p>Nossa equipe é treinada para realizar a limpeza com máxima segurança e eficiência, garantindo os melhores resultados.</p>
+                    <ul>
+                        <li>Profissionais certificados e experientes</li>
+                        <li>Produtos específicos para painéis solares</li>
+                        <li>Inspeção completa durante o serviço</li>
+                        <li>Relatório fotográfico antes e depois</li>
+                        <li>Garantia de qualidade do serviço</li>
+                    </ul>
+                </div>
+                <div class="equipment-image">
+                    <img src="equipamento2.jpg" alt="Profissional realizando limpeza">
+                </div>
+            </div>
+        </div>
+
+        <!-- Contato -->
+        <div class="section contact">
+            <h2 class="section-title">
+                <span class="section-icon">📞</span>
+                Entre em Contato Agora Mesmo!
+            </h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Eduardo Sidegum</h3>
+                    <p class="phone">📱 (51) 99966-3200</p>
+                    <p>Especialista em limpeza de placas solares</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Samuel Sidegum</h3>
+                    <p class="phone">📱 (51) 99603-3200</p>
+                    <p>📧 samu.schneider.placas@gmail.com</p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/5551999663200" class="cta-button">💬 Solicite seu Orçamento Gratuito</a>
+
+            <div class="location">
+                <p><strong>📍 Atendimento em Poço das Antas e região</strong></p>
+                <p style="margin-top: 10px;">Orçamento gratuito e sem compromisso.</p>
+                <p><strong>✅ Solicite sua avaliação técnica e maximize sua geração solar!</strong></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Limpeza Técnica de Placas Solares - Sidegum</strong></p>
+            <p>Mais eficiência, mais economia, mais retorno!</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">© 2025 - Todos os direitos reservados</p>
+        </div>
+    </div>
+</body>
+</html>
