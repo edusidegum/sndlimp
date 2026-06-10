@@ -18,6 +18,19 @@
     <meta name="DC.coverage" content="Vale do Sinos, Vale do Taquari, Rio Grande do Sul, Brasil">
     <meta name="DC.description" content="SNDLimp — Diagnóstico de perdas de produção em usinas solares.">
 
+<!-- ═══════════ PROTEÇÃO CONTRA CÓPIA ═══════════ -->
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<style>
+    body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+</style>
+
+    
     <!-- ═══════════ OPEN GRAPH ═══════════ -->
     <meta property="og:title" content="SNDLimp — Calculadora de Perdas Solares">
     <meta property="og:description" content="Descubra em segundos quanto dinheiro a sujeira acumulada está retirando da sua geração.">
@@ -215,7 +228,11 @@
         }
     </style>
 </head>
-<body>
+    
+<!-- ═══════════ <body> alterado para abaixo  ═══════════ -->
+    
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
 
 <!-- ═══════════ TOPBAR FIXA ═══════════ -->
 <header class="sticky-header" role="banner" aria-label="Barra de navegação principal">
@@ -570,6 +587,21 @@ function fmt(v){
 
 montarBotoesMeses();
 </script>
+<script>
+// ═══════════ BLOQUEIO DE ATALHOS DE DEV ═══════════
+document.addEventListener('keydown', function(e) {
+    // Bloqueia F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+    if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+        (e.ctrlKey && (e.key === 'U' || e.key === 'S' || e.key === 'u' || e.key === 's'))
+    ) {
+        e.preventDefault();
+        return false;
+    }
+});
+</script>
 
+    
 </body>
 </html>
