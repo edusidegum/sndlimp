@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
-    <meta name="description" content="Limpeza especializada em placas solares. Recupere até 98% da eficiência. Técnica profissional, sem riscos, relatório fotográfico incluso.">
-    <meta name="author" content="SNDLimp">
+    <!-- SEO On-Page -->
+    <meta name="description" content="SNDLimp — Limpeza especializada em placas solares. Recupere até 25% de eficiência. Atendimento em Poço das Antas e região.">
+    <meta name="author" content="SNDLimp — Samuel & Eduardo Sidegum">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0d0d0d">
 
     <!-- Open Graph -->
     <meta property="og:title" content="SNDLimp — Limpeza Especializada em Placas Solares">
-    <meta property="og:description" content="Suas placas sujas estão perdendo dinheiro. A SNDLimp resolve com técnica profissional e relatório fotográfico.">
-    <meta property="og:image" content="https://edusidegum.github.io/sndlimp/img/og-sndlimp.jpg">
+    <meta property="og:description" content="Placa suja não gera energia. Placa limpa é dinheiro no bolso!">
+    <meta property="og:image" content="https://edusidegum.github.io/sndlimp/img/servicos%20(1).jpg">
     <meta property="og:url" content="https://edusidegum.github.io/sndlimp/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
@@ -21,131 +21,500 @@
     <title>SNDLimp — Limpeza Especializada em Placas Solares</title>
 
     <link rel="canonical" href="https://edusidegum.github.io/sndlimp/">
-    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+
+        :root {
+            --primary: #F5A623;
+            --primary-glow: #FFB84D;
+            --dark: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --white: #FFFFFF;
+            --text-light: #d6d6d6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-light);
+            background-color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            color: var(--white);
+        }
+
+        /* ═══════════ TOPBAR ═══════════ */
+        .sticky-header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(245, 166, 35, 0.25);
+            padding: 5px 5%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 8px;
+            min-height: 40px;
+        }
+
+        .sticky-header .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            justify-self: start;
+        }
+
+        .sticky-header .topbar-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .sticky-header .topbar-logo-sub {
+            font-size: 0.65rem;
+            color: #aaa;
+            display: block;
+            letter-spacing: 0;
+            text-transform: none;
+            font-weight: 400;
+        }
+
+        .menu-dropdown {
+            position: relative;
+            justify-self: center;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 10px 14px;
+            transition: color 0.3s ease;
+        }
+        .menu-toggle:hover { color: var(--primary); }
+
+        .menu-lista {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 6px;
+            background: #1e1e1e;
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            border-radius: 8px;
+            list-style: none;
+            min-width: 190px;
+            z-index: 1001;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            padding: 0;
+        }
+
+        .menu-lista li { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .menu-lista li:last-child { border-bottom: none; }
+
+        .menu-lista a {
+            display: block;
+            padding: 11px 16px;
+            color: #d6d6d6;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu-lista a:hover {
+            background: rgba(245, 166, 35, 0.12);
+            color: var(--primary);
+        }
+
+        .menu-dropdown:focus-within .menu-lista,
+        .menu-dropdown:hover .menu-lista { display: block; }
+
+        .sticky-header .btn-cta {
+            background: #0a3d14;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 50px;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(13, 77, 26, 0.4);
+            justify-self: end;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .sticky-header .btn-cta:hover { background: #072e0f; }
+
+        .header-spacer { min-height: 40px; }
+
+        /* ═══════════ CONTAINER ═══════════ */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ═══════════ HERO ═══════════ */
+        .hero {
+            background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+            padding: 60px 20px 50px;
+            text-align: center;
+            border-bottom: 2px solid rgba(245, 166, 35, 0.2);
+        }
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .hero h1 em { color: var(--primary); font-style: normal; }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        /* Card de destaque */
+        .destaque-card {
+            display: inline-block;
+            background: var(--card-bg);
+            border: 2px solid rgba(245, 166, 35, 0.3);
+            border-radius: 16px;
+            padding: 20px 30px;
+            margin: 15px 0 20px;
+            text-align: center;
+        }
+        .destaque-card .valor {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: block;
+        }
+        .destaque-card .label {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .btn-cta-hero {
+            display: inline-block;
+            background: #25D366;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-cta-hero:hover {
+            background: #1fb950;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+        }
+
+        /* ═══════════ SEÇÕES ═══════════ */
+        .section { padding: 40px 0; }
+        .section-dark { background: #111; }
+
+        .section h2 {
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section h2 em { color: var(--primary); font-style: normal; }
+
+        .section p { margin-bottom: 16px; color: #bbb; line-height: 1.7; }
+
+        /* ── Imagens ── */
+        .img-full {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 14px;
+            display: block;
+            margin: 20px auto;
+            border: 2px solid rgba(245, 166, 35, 0.25);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .antes-depois-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        .antes-depois-grid img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid rgba(245, 166, 35, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        .antes-depois-grid .caption {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        /* ── Benefícios ── */
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .beneficio-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(245, 166, 35, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .beneficio-card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .beneficio-card h3 {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: var(--primary);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .beneficio-card p {
+            font-size: 0.78rem;
+            color: #999;
+            margin: 0;
+        }
+
+        /* ═══════════ BOTÕES ═══════════ */
+        .btn-amarelo {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(245, 166, 35, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-amarelo:hover {
+            background: var(--primary-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(245, 166, 35, 0.45);
+        }
+
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+
+        /* ═══════════ FOOTER ═══════════ */
+        footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(245, 166, 35, 0.2);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        footer h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        footer p { color: #888; font-size: 0.85rem; margin-bottom: 6px; }
+        footer .footer-whats {
+            display: inline-block;
+            margin-top: 16px;
+        }
+        footer .copyright {
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: #555;
+        }
+
+        /* ═══════════ MOBILE ═══════════ */
+        @media (max-width: 600px) {
+            .sticky-header {
+                padding: 6px 3%;
+                min-height: auto;
+                grid-template-columns: auto 1fr auto;
+                gap: 6px;
+            }
+            .sticky-header .topbar-logo-text { font-size: 0.9rem; }
+            .sticky-header .topbar-logo-sub { display: none; }
+            .menu-toggle { font-size: 0.82rem; padding: 6px 10px; }
+            .sticky-header .btn-cta { font-size: 0.68rem; padding: 6px 12px; }
+            .header-spacer { min-height: 50px; }
+
+            .hero h1 { font-size: 1.4rem; }
+            .destaque-card .valor { font-size: 1.8rem; }
+            .beneficios-grid { grid-template-columns: 1fr; }
+            .antes-depois-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
 <!-- ═══════════ TOPBAR FIXA ═══════════ -->
 <header class="sticky-header" role="banner" aria-label="Barra de navegação principal">
-    <!-- Brand -->
     <a href="https://edusidegum.github.io/sndlimp/" aria-label="Página inicial SNDLimp" class="topbar-brand">
-        <img src="https://raw.githubusercontent.com/edusidegum/menu/main/ArtesOficiais/Herbalife-Logo-Distribuidor-Horizontal-RGB.png" alt="SNDLimp" class="topbar-logo">
-        <span class="topbar-nome">■ SNDLIMP</span>
+        <span class="topbar-logo-text">☀ SNDLimp<span class="topbar-logo-sub">Limpeza Técnica de Placas Solares</span></span>
     </a>
 
-    <!-- Menu Dropdown -->
     <nav class="menu-dropdown" aria-label="Menu de navegação">
         <button class="menu-toggle" aria-label="Abrir menu">☰ Menu</button>
         <ul class="menu-lista">
-            <li><a href="#hero">Início</a></li>
+            <li><a href="#problema">O Problema</a></li>
             <li><a href="folder_comercial.html">Nossa Proposta</a></li>
-            <li><a href="galeria.html">Galeria de Fotos</a></li>
+            <li><a href="#galeria">Galeria de Fotos</a></li>
             <li><a href="economia.html">Economia</a></li>
         </ul>
     </nav>
 
-    <!-- WhatsApp CTA -->
-    <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20recuperar%20a%20efici%C3%AAncia%20das%20minhas%20placas." class="btn-cta" target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
-        💬 Solicitar Orçamento
+    <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20limpeza%20de%20placas%20solares." class="btn-cta" target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
+        💬 Solicite Orçamento
     </a>
 </header>
 
 <div class="header-spacer"></div>
 
 <!-- ═══════════ HERO ═══════════ -->
-<section id="hero" class="hero">
+<section class="hero">
     <div class="container">
-        <h1>Suas placas <em>sujas</em> estão perdendo <strong>R$50,00 por mês</strong> cada uma?</h1>
+        <h1>Suas placas <em>sujas</em> estão perdendo <em>R$50,00 por mês</em> cada uma?</h1>
         <p class="hero-sub">Poeira, fuligem e excrementos reduzem drasticamente a captação. A SNDLimp resolve isso.</p>
 
-        <div class="hero-cta">
-            <p class="hero-preco">💸 <strong>R$50/mês</strong> — É o que <strong>cada placa</strong> deixa de gerar por acúmulo de sujeira. Faça as contas.</p>
-            <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20recuperar%20a%20efici%C3%AAncia%20das%20minhas%20placas." class="btn-hero" target="_blank" rel="noopener">
-                💬 Quero Parar de Perder Dinheiro
+        <div class="destaque-card">
+            <span class="valor">💸 R$50/mês</span>
+            <span class="label">É o que <strong>cada placa</strong> deixa de gerar por acúmulo de sujeira. Faça as contas.</span>
+        </div>
+
+        <br>
+        <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20recuperar%20a%20efici%C3%AAncia%20das%20minhas%20placas." class="btn-cta-hero" target="_blank" rel="noopener">
+            💬 Quero Parar de Perder Dinheiro
+        </a>
+    </div>
+</section>
+
+<!-- ═══════════ O PROBLEMA ═══════════ -->
+<section class="section" id="problema">
+    <div class="container">
+        <h2>🔍 Você instalou energia solar para <em>economizar</em>, certo?</h2>
+        <p>Mas quando foi a última vez que inspecionou a superfície dos painéis? A diferença entre uma placa limpa e uma suja pode chegar a <strong>25% de perda</strong> — e esse rombo cresce todo mês.</p>
+    </div>
+</section>
+
+<!-- ═══════════ PREJUÍZO ESCONDIDO ═══════════ -->
+<section class="section section-dark">
+    <div class="container">
+        <h2>📉 O prejuízo escondido na sua laje</h2>
+
+        <!-- Imagem rendimentoplacas.png -->
+        <img src="img/rendimentoplacas.png" alt="Gráfico de rendimento — impacto da sujeira nas placas solares" class="img-full" loading="lazy">
+
+        <p style="text-align:center; margin-top:16px;">
+            <strong>🏠 Residência com 12 placas</strong> → Até R$600/mês perdidos<br>
+            <strong>🏭 Empresa com 60 placas</strong> → Até R$3.000/mês evaporando
+        </p>
+        <p style="text-align:center; color:#F5A623;">O "payback" do seu investimento está sendo alongado sem você perceber.</p>
+    </div>
+</section>
+
+<!-- ═══════════ SNDLIMP ENTRA AQUI ═══════════ -->
+<section class="section">
+    <div class="container">
+        <h2>✅ A SNDLimp entra aqui</h2>
+
+        <!-- Antes e Depois: servicos (4).jpg e servicos (5).jpg -->
+        <div class="antes-depois-grid">
+            <div>
+                <img src="img/servicos%20(4).jpg" alt="Placas solares antes da limpeza — sujas" loading="lazy">
+                <p class="caption">🔴 ANTES — Placas com acúmulo de sujeira</p>
+            </div>
+            <div>
+                <img src="img/servicos%20(5).jpg" alt="Placas solares depois da limpeza — limpas" loading="lazy">
+                <p class="caption">🟢 DEPOIS — Eficiência restaurada</p>
+            </div>
+        </div>
+
+        <p>Usamos equipamento profissional, produtos biodegradáveis e técnica que <strong>não risca, não mancha e não danifica</strong> o vidro antirreflexo dos seus módulos. Limpeza feita por quem entende de geração.</p>
+        <p style="text-align:center; color:var(--primary); font-weight:700;">Resultado: eficiência restaurada em até 98% logo após a limpeza.</p>
+
+        <div class="text-center mt-20">
+            <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20agendar%20uma%20limpeza%20das%20minhas%20placas." class="btn-amarelo" target="_blank" rel="noopener">
+                📅 Agendar Limpeza Agora
             </a>
         </div>
     </div>
 </section>
 
-<!-- ═══════════ SEÇÃO: DIAGNÓSTICO ═══════════ -->
-<section class="section-diagnostico">
+<!-- ═══════════ POR QUE SNDLIMP ═══════════ -->
+<section class="section section-dark" id="galeria">
     <div class="container">
-        <h2>🔍 Você instalou energia solar para economizar, certo?</h2>
-        <p>Mas quando foi a última vez que inspecionou a superfície dos painéis? A diferença entre uma placa limpa e uma suja pode chegar a <strong>25% de perda</strong> — e esse rombo cresce todo mês.</p>
-    </div>
-</section>
+        <h2>Por que a <em>SNDLimp</em>?</h2>
 
-<!-- ═══════════ SEÇÃO: PREJUÍZO ═══════════ -->
-<section class="section-prejuizo">
-    <div class="container">
-        <img src="img/rendimentoplacas.png" alt="Gráfico de rendimento de placas solares com e sem limpeza" class="img-fluid img-rendimento" loading="lazy">
-
-        <h2>📉 O prejuízo escondido na sua laje</h2>
-
-        <div class="prejuizo-grid">
-            <div class="prejuizo-card">
-                <p>🏠 <strong>Residência com 12 placas</strong></p>
-                <p class="prejuizo-valor">Até R$600/mês perdidos</p>
-            </div>
-            <div class="prejuizo-card">
-                <p>🏭 <strong>Empresa com 60 placas</strong></p>
-                <p class="prejuizo-valor">Até R$3.000/mês evaporando</p>
-            </div>
-        </div>
-
-        <p class="prejuizo-obs">O "payback" do seu investimento está sendo alongado sem você perceber.</p>
-    </div>
-</section>
-
-<!-- ═══════════ SEÇÃO: ANTES & DEPOIS + SOLUÇÃO ═══════════ -->
-<section class="section-solucao">
-    <div class="container">
-        <h2>✅ A SNDLimp entra aqui</h2>
-
-        <!-- Antes e Depois -->
-        <div class="antes-depois">
-            <div class="ad-card">
-                <img src="img/servicos (4).jpg" alt="Placas solares antes da limpeza — sujas" loading="lazy">
-                <span class="ad-label antes">ANTES</span>
-            </div>
-            <div class="ad-card">
-                <img src="img/servicos (5).jpg" alt="Placas solares depois da limpeza — limpas" loading="lazy">
-                <span class="ad-label depois">DEPOIS</span>
-            </div>
-        </div>
-
-        <div class="solucao-texto">
-            <p>Usamos equipamento profissional, produtos biodegradáveis e técnica que <strong>não risca, não mancha e não danifica</strong> o vidro antirreflexo dos seus módulos. Limpeza feita por quem entende de geração.</p>
-            <p><strong>Resultado:</strong> eficiência restaurada em até 98% logo após a limpeza.</p>
-        </div>
-
-        <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20agendar%20uma%20limpeza%20das%20minhas%20placas." class="btn-hero" target="_blank" rel="noopener">
-            📅 Agendar Limpeza Agora
-        </a>
-    </div>
-</section>
-
-<!-- ═══════════ SEÇÃO: POR QUE SNDLIMP ═══════════ -->
-<section class="section-porque">
-    <div class="container">
-        <h2>Por que a SNDLimp?</h2>
-
-        <div class="porque-grid">
-            <div class="porque-card">
-                <span class="porque-ico">🧼</span>
+        <div class="beneficios-grid">
+            <div class="beneficio-card">
+                <span class="icon">🧼</span>
                 <h3>Sem abrasivos</h3>
                 <p>Nada de esponjas ásperas ou produtos caseiros. Cuidamos do seu investimento.</p>
             </div>
-            <div class="porque-card">
-                <span class="porque-ico">📊</span>
+            <div class="beneficio-card">
+                <span class="icon">📊</span>
                 <h3>Relatório fotográfico</h3>
                 <p>Antes e depois para você ter certeza do serviço.</p>
             </div>
-            <div class="porque-card">
-                <span class="porque-ico">⏱️</span>
+            <div class="beneficio-card">
+                <span class="icon">⏱️</span>
                 <h3>Rápido e sem bagunça</h3>
                 <p>Em poucas horas seu sistema volta a produzir no máximo.</p>
             </div>
+        </div>
+
+        <!-- Galeria de Fotos -->
+        <h3 style="text-align:center; margin-top:30px; color:var(--primary);">📸 Galeria de Serviços</h3>
+        <div class="antes-depois-grid">
+            <img src="img/servicos%20(1).jpg" alt="Serviço de limpeza de placas solares 1" loading="lazy">
+            <img src="img/servicos%20(2).jpg" alt="Serviço de limpeza de placas solares 2" loading="lazy">
+            <img src="img/servicos%20(3).jpg" alt="Serviço de limpeza de placas solares 3" loading="lazy">
+            <img src="img/ProcedimentosPlacas.png" alt="Procedimentos técnicos de limpeza de placas" loading="lazy">
         </div>
     </div>
 </section>
@@ -153,11 +522,16 @@
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
     <div class="container">
-        <h2>SNDLimp — Limpeza Especializada em Placas Solares</h2>
-        <p>Recupere a eficiência do seu investimento com técnica profissional.</p>
-        <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20solicitar%20um%20or%C3%A7amento%20para%20limpeza%20de%20placas%20solares." class="btn-hero" target="_blank" rel="noopener">
-            💬 Solicitar Orçamento
+        <h3>☀ SNDLimp</h3>
+        <p><strong>Limpeza Especializada em Placas Solares</strong></p>
+        <p>📞 Samuel Sidegum: (51) 99603-3200</p>
+        <p>📞 Eduardo Sidegum: (51) 99966-3200</p>
+        <p>📍 Atendimento em Poço das Antas e região</p>
+
+        <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20limpeza%20de%20placas%20solares." class="btn-cta-hero footer-whats" target="_blank" rel="noopener">
+            💬 Solicite Orçamento
         </a>
+
         <p class="copyright">&copy; 2026 SNDLimp — Todos os direitos reservados.</p>
     </div>
 </footer>
