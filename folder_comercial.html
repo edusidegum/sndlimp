@@ -29,7 +29,24 @@
     <meta property="og:url" content="https://edusidegum.github.io/sndlimp/foldercomercial.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <link rel="stylesheet" href="assets/css/style.css">
+    
+
+     <!-- 1️⃣ PRELOAD Google Fonts (carrega em paralelo, não bloqueia) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=..." as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=...">
+    
+    <!-- 2️⃣ CSS com media="print" + onload (carrega async) -->
+    <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+    
+    <!-- 3️⃣ JS com async (não bloqueia) -->
+    <script src="https://edusidegum.github.io/menu/bloco-includes.js" async></script>
+    
+    <!-- Resto das meta tags (sem mudanças) -->
+    <title>...</title>
+    <meta name="description" content="...">
+
+    
 </head>
     
 
