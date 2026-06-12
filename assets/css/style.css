@@ -621,3 +621,10 @@ footer .copyright {
             .sticky-header .btn-cta { font-size: 0.68rem; padding: 6px 12px; }
             .header-spacer { min-height: 50px; }
         }
+
+ /* limita a altura em view-height para telas pequenas 
+/ width: auto; / preserva proporção /
+display: block; margin: 12px auto; object-fit: 
+contain; / evita distorção se usar dimensões fixas */
+.img-half { height: 50%; max-height: 50vh; 
+           }
