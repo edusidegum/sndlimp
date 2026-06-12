@@ -622,12 +622,13 @@ footer .copyright {
             .header-spacer { min-height: 50px; }
         }
 
-/* Classe usada para reduzir altura da imagem para 50% e centralizá-la */
+/* Atualização no style.css — substituir .img-half */
 .img-half {
-  height: 50%;             /* 50% relativo ao contêiner pai; usado como preferência */
-  max-height: 50vh;        /* garante limite realista em telas pequenas */
-  width: auto;             /* preserva proporção */
+  width: 100%;            /* ocupa toda a largura do contêiner (+30% relativo a imagem com margens) */
+  max-width: 100%;        /* não ultrapassa o contêiner pai */
+  height: auto;           /* preserva proporção natural */
+  max-height: 35vh;       /* altura reduzida ~30% (antes 50vh) */
   display: block;
-  margin: 0 auto;          /* centraliza horizontalmente */
-  object-fit: contain;     /* evita distorção se contêiner variar */
+  margin: 0 auto;         /* centraliza horizontalmente */
+  object-fit: contain;    /* evita distorção */
 }
