@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora IEEE3S — SNDLimp</title>
+<meta name="description" content="SNDLimp — Calculadora avançada de perdas por sujidade em placas solares. Dados INMET 1991-2020 para 27 capitais com média e mediana.">
+<meta name="keywords" content="limpeza de placas solares, cálculo perda solar, ieee3s, SNDLimp, INMET">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="geo.region" content="BR-RS">
+<meta name="geo.placename" content="Vale do Sinos • Vale do Taquari • Rio Grande do Sul • Brasil">
+<meta property="og:title" content="Calculadora IEEE3S — SNDLimp">
+<meta property="og:description" content="Calcule o impacto financeiro da sujidade em placas solares com dados INMET.">
+<meta property="og:image" content="https://edusidegum.github.io/sndlimp/img/Escova1.jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://edusidegum.github.io/sndlimp/ieee3s/ieee3s.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<link rel="canonical" href="https://edusidegum.github.io/sndlimp/ieee3s/ieee3s.html">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<style>
+  body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+</style>
+<script src="https://edusidegum.github.io/menu/bloco-includes.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="ieee3s.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="sticky-header">
+  <a href="https://edusidegum.github.io/sndlimp/" class="topbar-brand">
+    <span class="topbar-logo-text">☀ SNDLimp</span>
+    <span class="topbar-logo-sub">Limpeza Técnica de Placas Solares</span>
+  </a>
+  <nav class="menu-dropdown">
+    <button class="menu-toggle">☰ Menu</button>
+    <ul class="menu-lista">
+      <li><a href="https://edusidegum.github.io/sndlimp/">Início</a></li>
+      <li><a href="https://edusidegum.github.io/sndlimp/">Nossa Proposta</a></li>
+      <li><a href="https://edusidegum.github.io/sndlimp/">Galeria de Fotos</a></li>
+      <li><a href="https://edusidegum.github.io/sndlimp/ieee3s/ieee3s.html" style="color:#F5A623;">Simulador</a></li>
+    </ul>
+  </nav>
+  <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." class="btn-cta">💬 Solicite Orçamento</a>
+</header>
+<div class="header-spacer"></div>
+<section class="hero">
+  <h1>Diagnóstico <em>IEEE3S</em></h1>
+  <p class="hero-sub">Calcule com precisão o impacto financeiro da sujidade no seu sistema solar — com dados INMET 1991-2020 para todo o Brasil.</p>
+  <div class="destaque-card">
+    <span class="label">Dados Oficiais</span>
+    <span class="valor" style="font-size:1.2rem;">INMET • 27 Capitais • Média + Mediana</span>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2>Dados do <em>Sistema</em></h2>
+    <div class="grupo">
+      <label>Nome do Cliente</label>
+      <input type="text" id="nome" placeholder="Ex: João Silva">
+    </div>
+    <div class="grupo">
+      <label>Estado (UF)</label>
+      <div class="grupo-uf">
+        <input type="text" id="estado" class="input-uf" placeholder="RS" maxlength="2" value="RS">
+        <span class="uf-badge">📍 Dados INMET 1991-2020 • Padrão: RS</span>
+      </div>
+      <small style="color:#666;font-size:0.7rem;">Digite a sigla do estado. Se inválido, usamos RS como referência.</small>
+    </div>
+    <div class="grupo">
+      <label>Número de Placas Instaladas</label>
+      <input type="number" id="nplacas" placeholder="Ex: 18" min="1">
+    </div>
+    <div class="grupo">
+      <label>Potência da Placa (Wp)</label>
+      <input type="number" id="wpplaca" value="550" min="1" step="5">
+    </div>
+    <div class="grupo">
+      <label>Valor do kWh (R$)</label>
+      <input type="number" id="kwh" placeholder="Ex: 0.89" step="0.01" min="0.01">
+    </div>
+    <div class="grupo">
+      <label>Meses desde a Última Limpeza</label>
+      <input type="number" id="meses" placeholder="Ex: 6" min="1" max="60">
+    </div>
+    <div class="nota-metodo">
+      ⚠ <strong>Estimativa linear baseada nas Normais Climatológicas INMET 1991-2020.</strong> Cada mês sem limpeza representa aprox. <strong>2,5% de perda adicional</strong> na captação, com teto de <strong>30%</strong> (12 meses). O fator regional (0,7x a 1,3x) ajusta o cálculo conforme a precipitação da UF selecionada. Dados de média e mediana pluviométrica incluídos para maior robustez.
+    </div>
+  </div>
+</section>
+<div id="resultados" style="display:none;">
+  <section class="section">
+    <div class="container">
+      <h2>Resultado da <em>Estimativa</em></h2>
+      <div style="text-align:center;margin-bottom:8px;">
+        <small style="color:#666;font-size:0.7rem;">
+          📍 <span id="ufAtual">RS — Porto Alegre</span> • 
+          🌧️ Média: <span id="precipAnual">—</span> mm/ano • 
+          📊 Mediana: <span id="precipMediana">—</span> mm/ano • 
+          🏷️ Classe: <span id="classeSujidade">—</span>
+        </small>
+      </div>
+      <div class="resultados">
+        <div class="resultado-card full">
+          <div class="rotulo">🔸 PERDA ACUMULADA ESTIMADA</div>
+          <div class="valor grande destaque" id="perdaAcumulada">R$ –</div>
+        </div>
+        <div class="resultado-card">
+          <div class="rotulo">Perda Mensal Estimada</div>
+          <div class="valor" id="perdaMensal">R$ –</div>
+        </div>
+        <div class="resultado-card">
+          <div class="rotulo">Projeção Anual (12 meses)</div>
+          <div class="valor" id="perdaAnual">R$ –</div>
+        </div>
+        <div class="resultado-card">
+          <div class="rotulo">Perda de Captação Atual</div>
+          <div class="valor" id="perdaCaptacao">– %</div>
+        </div>
+        <div class="resultado-card">
+          <div class="rotulo">Geração Perdida / Mês</div>
+          <div class="valor" id="geracaoPerdida">– kWh</div>
+        </div>
+        <div class="resultado-card">
+          <div class="rotulo">Perda por Placa / Mês</div>
+          <div class="valor" id="perdaPorPlaca">R$ –</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="grafico-wrapper" style="display:none;">
+  <section class="section">
+    <div class="container">
+      <div class="grafico-wrapper">
+        <h3 style="text-align:center;color:#F5A623;font-size:0.9rem;margin-bottom:15px;">📈 Curva de Degradação — Perda Financeira por Mês sem Limpeza</h3>
+        <canvas id="grafico" height="250"></canvas>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="diagnostico" style="display:none;">
+  <section class="section">
+    <div class="container">
+      <div class="diagnostico-box">
+        <h3>📋 Diagnóstico Personalizado</h3>
+        <p id="diagnosticoTexto">Preencha os dados para ver o diagnóstico.</p>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="container">
+  <div class="botoes-acao">
+    <a id="btnEnviar" href="#" class="btn-whatsapp" target="_blank">📱 Enviar Diagnóstico ao Cliente</a>
+    <a href="metodoieee3s.html" class="btn-outline">🔬 Ver Metodologia</a>
+  </div>
+  <div class="text-center mt-20">
+    <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20limpeza%20de%20placas%20solares." class="btn-cta-hero">💬 Solicite Orçamento</a>
+  </div>
+</div>
+<footer>
+  <h3>☀ SNDLimp</h3>
+  <p><strong>Limpeza Especializada em Placas Solares</strong></p>
+  <p>📞 Samuel Sidegum: (51) 99603-3200</p>
+  <p>📞 Eduardo Sidegum: (51) 99966-3200</p>
+  <p>📍 Atendimento em Poço das Antas e região</p>
+  <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20limpeza%20de%20placas%20solares." class="btn-cta-hero" style="display:inline-block;margin-top:16px;">💬 Solicite Orçamento</a>
+  <p class="copyright">© 2026 SNDLimp · IEEE Procução Solar — Investimento Especial em Energia · Todos os direitos reservados.</p>
+</footer>
+<script>
+const inmetData = {
+  'AC': { capital: 'Rio Branco', regiao: 'Norte', media: 2000, mediana: 1950 },
+  'AL': { capital: 'Maceió', regiao: 'Nordeste', media: 1600, mediana: 1550 },
+  'AP': { capital: 'Macapá', regiao: 'Norte', media: 2400, mediana: 2350 },
+  'AM': { capital: 'Manaus', regiao: 'Norte', media: 2300, mediana: 2250 },
+  'BA': { capital: 'Salvador', regiao: 'Nordeste', media: 1800, mediana: 1750 },
+  'CE': { capital: 'Fortaleza', regiao: 'Nordeste', media: 1500, mediana: 1450 },
+  'DF': { capital: 'Brasília', regiao: 'Centro-Oeste', media: 1400, mediana: 1350 },
+  'ES': { capital: 'Vitória', regiao: 'Sudeste', media: 1300, mediana: 1250 },
+  'GO': { capital: 'Goiânia', regiao: 'Centro-Oeste', media: 1500, mediana: 1450 },
+  'MA': { capital: 'São Luís', regiao: 'Nordeste', media: 1900, mediana: 1850 },
+  'MT': { capital: 'Cuiabá', regiao: 'Centro-Oeste', media: 1600, mediana: 1550 },
+  'MS': { capital: 'Campo Grande', regiao: 'Centro-Oeste', media: 1400, mediana: 1350 },
+  'MG': { capital: 'Belo Horizonte', regiao: 'Sudeste', media: 1400, mediana: 1350 },
+  'PA': { capital: 'Belém', regiao: 'Norte', media: 2800, mediana: 2750 },
+  'PB': { capital: 'João Pessoa', regiao: 'Nordeste', media: 1700, mediana: 1650 },
+  'PR': { capital: 'Curitiba', regiao: 'Sul', media: 1500, mediana: 1450 },
+  'PE': { capital: 'Recife', regiao: 'Nordeste', media: 1800, mediana: 1750 },
+  'PI': { capital: 'Teresina', regiao: 'Nordeste', media: 1300, mediana: 1250 },
+  'RJ': { capital: 'Rio de Janeiro', regiao: 'Sudeste', media: 1200, mediana: 1150 },
+  'RN': { capital: 'Natal', regiao: 'Nordeste', media: 1500, mediana: 1450 },
+  'RS': { capital: 'Porto Alegre', regiao: 'Sul', media: 1400, mediana: 1350 },
+  'RO': { capital: 'Porto Velho', regiao: 'Norte', media: 2100, mediana: 2050 },
+  'RR': { capital: 'Boa Vista', regiao: 'Norte', media: 1700, mediana: 1650 },
+  'SC': { capital: 'Florianópolis', regiao: 'Sul', media: 1500, mediana: 1450 },
+  'SP': { capital: 'São Paulo', regiao: 'Sudeste', media: 1400, mediana: 1350 },
+  'SE': { capital: 'Aracaju', regiao: 'Nordeste', media: 1300, mediana: 1250 },
+  'TO': { capital: 'Palmas', regiao: 'Norte', media: 1600, mediana: 1550 }
+};
+const VALID_UFS = Object.keys(inmetData);
+const DEFAULT_UF = 'RS', TETO_PCT = 30, TAXA_MENSAL = 2.5, H_P_PADRAO = 4.5, DIAS_POR_MES = 30;
+let chartInstance = null;
+function getClasseSujidade(uf) {
+  const data = inmetData[uf] || inmetData[DEFAULT_UF];
+  if (data.media > 2000) return { classe: 'Alta', fator: 1.3, label: 'Alta Precipitação' };
+  if (data.media > 1500) return { classe: 'Moderada', fator: 1.0, label: 'Precipitação Moderada' };
+  return { classe: 'Baixa', fator: 0.7, label: 'Baixa Precipitação' };
+}
+function calcular() {
+  const nome = document.getElementById('nome').value || 'Cliente';
+  const uf = document.getElementById('estado').value.toUpperCase();
+  const nplacas = parseFloat(document.getElementById('nplacas').value) || 0;
+  const wpplaca = parseFloat(document.getElementById('wpplaca').value) || 0;
+  const kwh = parseFloat(document.getElementById('kwh').value) || 0;
+  const meses = parseFloat(document.getElementById('meses').value) || 0;
+  if (nplacas <= 0 || wpplaca <= 0 || kwh <= 0 || meses <= 0) return;
+  const data = inmetData[uf] || inmetData[DEFAULT_UF];
+  const classe = getClasseSujidade(uf);
+  const perdaBase = Math.min(meses * TAXA_MENSAL * classe.fator, TETO_PCT);
+  const geracaoMensal = (nplacas * wpplaca * H_P_PADRAO * DIAS_POR_MES) / 1000;
+  const perdaMensalKwh = geracaoMensal * (perdaBase / 100);
+  const perdaMensalR = perdaMensalKwh * kwh;
+  const perdaAcumulada = perdaMensalR * meses;
+  document.getElementById('ufAtual').innerText = `${uf} — ${data.capital}`;
+  document.getElementById('precipAnual').innerText = data.media;
+  document.getElementById('precipMediana').innerText = data.mediana;
+  document.getElementById('classeSujidade').innerText = classe.classe;
+  document.getElementById('perdaAcumulada').innerText = `R$ ${perdaAcumulada.toFixed(2)}`;
+  document.getElementById('perdaMensal').innerText = `R$ ${perdaMensalR.toFixed(2)}`;
+  document.getElementById('perdaAnual').innerText = `R$ ${(perdaMensalR * 12).toFixed(2)}`;
+  document.getElementById('perdaCaptacao').innerText = `${perdaBase.toFixed(1)} %`;
+  document.getElementById('geracaoPerdida').innerText = `${perdaMensalKwh.toFixed(1)} kWh`;
+  document.getElementById('perdaPorPlaca').innerText = `R$ ${(perdaMensalR / nplacas).toFixed(2)}`;
+  document.getElementById('resultados').style.display = 'block';
+  document.getElementById('grafico-wrapper').style.display = 'block';
+  document.getElementById('diagnostico').style.display = 'block';
+  document.getElementById('diagnosticoTexto').innerText = `Com base no seu perfil em ${data.capital}, a sujidade acumulada em ${meses} meses está reduzindo sua geração em ${perdaBase.toFixed(1)}%. Recomendamos limpeza técnica imediata para evitar perdas financeiras contínuas.`;
+  const msg = `🟠 *Diagnóstico de Eficiência — SNDLimp*\n\n*Cliente:* ${nome}\n*Localidade:* ${uf} — ${data.capital}\n\n*🔸 Perda Acumulada Estimada: R$ ${perdaAcumulada.toFixed(2)}* 🔸\n\n📉 Perda Mensal: R$ ${perdaMensalR.toFixed(2)}\n📊 Projeção Anual: R$ ${(perdaMensalR * 12).toFixed(2)}\n⚠️ Perda de Captação: ${perdaBase.toFixed(1)}%\n\n📍 Dados INMET 1991-2020 para ${uf}\n🌧️ Média: ${data.media} mm/ano | Mediana: ${data.mediana} mm/ano\n🏷️ Classe: ${classe.classe}\n\n🔗 Faça você mesmo: https://edusidegum.github.io/sndlimp/ieee3s/ieee3s.html\n\n📱 *SNDLimp* — Limpeza Técnica de Placas Solares\n🟢 Fale conosco: wa.me/555196033200`;
+  document.getElementById('btnEnviar').href = `https://wa.me/555196033200?text=${encodeURIComponent(msg)}`;
+  atualizarGrafico(nplacas, wpplaca, kwh, classe.fator);
+}
+function atualizarGrafico(n, w, k, f) {
+  const ctx = document.getElementById('grafico').getContext('2d');
+  if (chartInstance) chartInstance.destroy();
+  const labels = Array.from({length: 12}, (_, i) => i + 1);
+  const data = labels.map(m => (n * w * H_P_PADRAO * DIAS_POR_MES / 1000) * (Math.min(m * TAXA_MENSAL * f, TETO_PCT) / 100) * k);
+  chartInstance = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Perda Financeira (R$)', data, borderColor: '#F5A623', tension: 0.3 }] } });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  ['estado', 'nplacas', 'wpplaca', 'kwh', 'meses'].forEach(id => document.getElementById(id).addEventListener('input', calcular));
+  document.getElementById('estado').addEventListener('blur', (e) => {
+    let val = e.target.value.toUpperCase();
+    if (!VALID_UFS.includes(val)) val = DEFAULT_UF;
+    e.target.value = val;
+    calcular();
+  });
+});
+</script>
+</body>
+</html>
