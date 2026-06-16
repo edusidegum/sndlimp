@@ -1,21 +1,648 @@
-<p class="hero-sub">Poeira, fuligem e excrementos reduzem drasticamente a captação. A SNDLimp resolve isso.</p>
-    <div class="destaque-card">
-        <span class="valor">💸 até R$50/mês</span>
-        <span class="label">É o que <strong>cada placa</strong> pode deixar de gerar por acúmulo de sujeira. Faça as contas.</span>
-        
-    </div>
-    <br>
-    <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20recuperar%20a%20efici%C3%AAncia%20das%20minhas%20placas." class="btn-cta-hero" target="_blank" rel="noopener">
-        💬 Quero Parar de Perder Dinheiro
-    </a>
-</div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDLimp — Diagnóstico de Perdas Fotovoltaicas</title>
+    <link rel="stylesheet" href="ieee3s.css">
+    <!-- ═══════════ SEO ON-PAGE ═══════════ -->
+    <meta name="description" content="SNDLimp — Diagnóstico de eficiência fotovoltaica. Calcule quanto dinheiro a sujeira está tirando da sua usina solar. Atendemos Vale do Sinos, Vale do Taquari e região.">
+    <meta name="keywords" content="limpeza de placas solares, cálculo perda solar, eficiência fotovoltaica, diagnóstico usina solar, Vale do Sinos, Vale do Taquari, Poço das Antas, RS">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0d0d0d">
+    <meta name="geo.region" content="BR-RS">
+    <meta name="geo.placename" content="Vale do Sinos • Vale do Taquari • Rio Grande do Sul • Brasil">
+    <meta name="geo.position" content="-29.4333;-51.4167">
+    <meta name="ICBM" content="-29.4333, -51.4167">
+    <meta name="DC.coverage" content="Vale do Sinos, Vale do Taquari, Rio Grande do Sul, Brasil">
+    <meta name="DC.description" content="SNDLimp — Diagnóstico de perdas de produção em usinas solares.">
+    <!-- ═══════════ PROTEÇÃO CONTRA CÓPIA ═══════════ -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <style>
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
 
-    <p><strong>Limpeza Especializada em Placas Solares</strong></p>
-    <p>📞 Samuel Sidegum: (51) 99603-3200</p>
-    <p>📞 Eduardo Sidegum: (51) 99966-3200</p>
-    <p>📍 Atendimento em Poço das Antas e região</p>
-    <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20limpeza%20de%20placas%20solares." class="btn-cta-hero footer-whats" target="_blank" rel="noopener">
-        💬 Solicite Orçamento
-    </a>
-    <p class="copyright">&copy; 2026 SNDLimp — Todos os direitos reservados.</p>
-</div>
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header>
+        <div class="container">
+            <h1>SNDLimp</h1>
+            <p class="subtitle">Diagnóstico de Eficiência Fotovoltaica</p>
+            <span class="badge">Ferramenta interna — v1.0</span>
+        </div>
+    </header>
+
+    <!-- ═══════════ CALCULADORA ═══════════ -->
+    <main>
+        <section id="calculator" class="container">
+            <h2>📐 Calcule sua Perda de Produção</h2>
+            <form id="calcForm">
+                <div class="form-row">
+                    <div class="field-group">
+                        <label for="uf">Estado (UF)</label>
+                        <input type="text" id="uf" name="uf" maxlength="2"
+                               placeholder="Ex: RS" required
+                               oninput="this.value = this.value.toUpperCase()"
+                               autocomplete="off">
+                        <span class="field-hint">Digite a sigla do estado</span>
+                    </div>
+                    <div class="field-group">
+                        <label for="city">Cidade</label>
+                        <input type="text" id="city" name="city"
+                               placeholder="Nome da cidade" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field-group">
+                        <label for="power">Potência do Sistema (kWp)</label>
+                        <input type="number" id="power" name="power"
+                               placeholder="Ex: 5.0" step="0.01" min="0" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="days">Tempo sem limpeza (dias)</label>
+                        <input type="number" id="days" name="days"
+                               placeholder="Ex: 90" min="1" max="730" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field-group">
+                        <label for="type">Tipo de Instalação</label>
+                        <select id="type" name="type">
+                            <option value="1.0">Telhado residencial</option>
+                            <option value="1.15">Telhado comercial</option>
+                            <option value="1.35">Solo</option>
+                            <option value="0.95">Seguimento solar (tracker)</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="rain">Índice Pluviométrico da Região</label>
+                        <select id="rain" name="rain">
+                            <option value="0.7">Baixo (&lt; 1500 mm/ano)</option>
+                            <option value="0.5">Médio (1500–2000 mm/ano)</option>
+                            <option value="0.35">Alto (2000–2500 mm/ano)</option>
+                            <option value="0.25">Muito alto (&gt; 2500 mm/ano)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Campos opcionais expansíveis -->
+                <details class="optional-fields">
+                    <summary>⚙️ Dados opcionais para maior precisão</summary>
+                    <div class="form-row">
+                        <div class="field-group">
+                            <label for="tariff">Tarifa de Energia (R$/kWh)</label>
+                            <input type="number" id="tariff" name="tariff"
+                                   value="0.85" step="0.01" min="0">
+                        </div>
+                        <div class="field-group">
+                            <label for="monthlyProd">Produção Média Mensal (kWh)</label>
+                            <input type="number" id="monthlyProd" name="monthlyProd"
+                                   placeholder="Se souber, informe" step="1" min="0">
+                        </div>
+                    </div>
+                </details>
+
+                <button type="button" class="btn-calc" onclick="calculateLoss()">
+                    🔍 Calcular Perda
+                </button>
+            </form>
+        </section>
+
+        <!-- ═══════════ RESULTADOS ═══════════ -->
+        <section id="results" class="container" style="display: none;">
+            <h2>📊 Resultados do Diagnóstico</h2>
+            <div id="resultCards" class="result-grid"></div>
+            <div id="lossGauge" class="gauge-container">
+                <div class="gauge-bar">
+                    <div id="gaugeFill" class="gauge-fill"></div>
+                </div>
+                <div class="gauge-labels">
+                    <span class="gauge-green">Baixo risco</span>
+                    <span class="gauge-yellow">Atenção</span>
+                    <span class="gauge-red">Crítico</span>
+                </div>
+            </div>
+            <div id="barChart" class="chart-bars"></div>
+        </section>
+
+        <!-- ═══════════ COMPARTILHAR ═══════════ -->
+        <section id="share" class="container">
+            <h2>📤 Compartilhar Diagnóstico</h2>
+            <p class="share-desc">Envie este resultado para o cliente com uma mensagem sugerida.</p>
+
+            <div class="share-controls">
+                <div class="field-group">
+                    <label for="msgCategory">Categoria da Mensagem</label>
+                    <select id="msgCategory" onchange="selectMessage()">
+                        <option value="">— Selecione uma categoria —</option>
+                        <option value="technical">📊 Diagnóstico Técnico</option>
+                        <option value="financial">💰 Impacto Financeiro</option>
+                        <option value="efficiency">🔋 Eficiência Energética</option>
+                        <option value="asset">🛡️ Preservação do Ativo</option>
+                    </select>
+                </div>
+                <div class="field-group" id="msgVariantGroup" style="display:none;">
+                    <label for="msgVariant">Variação da Mensagem</label>
+                    <select id="msgVariant" onchange="renderMessage()"></select>
+                </div>
+            </div>
+
+            <div id="msgPreview" class="msg-preview" style="display:none;">
+                <label>Mensagem Sugerida</label>
+                <textarea id="msgOutput" readonly rows="6"></textarea>
+                <div class="msg-actions">
+                    <button class="btn-secondary" onclick="copyMessage()">📋 Copiar Mensagem</button>
+                    <button class="btn-whatsapp" onclick="sendWhatsApp()">📱 Enviar via WhatsApp</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ METODOLOGIA ═══════════ -->
+        <section id="methodology" class="container">
+            <h2>📖 Metodologia de Cálculo</h2>
+            <p>
+                O cálculo estima a perda de produção causada pelo acúmulo de sujeira nas placas solares
+                com base em três variáveis principais: <strong>tempo de exposição sem limpeza</strong>,
+                <strong>índice pluviométrico local</strong> (chuva natural reduz o acúmulo),
+                e <strong>tipo de instalação</strong> (ângulo e altura influenciam a deposição de partículas).
+            </p>
+            <p>
+                A curva de perda adota um modelo exponencial logarítmico baseado em estudos de campo:
+                as maiores perdas relativas ocorrem nos primeiros meses, com estabilização gradual
+                após 6–8 meses sem limpeza. Os índices pluviométricos atuam como fator de desconto —
+                regiões mais chuvosas tendem a acumular menos sujeira entre limpezas.
+            </p>
+            <p class="method-note">
+                ⚠️ O resultado é uma <strong>estimativa baseada em médias do setor</strong>.
+                Cada instalação tem características únicas de localização, inclinação, orientação
+                e entorno. Recomenda-se uma inspeção técnica para diagnóstico preciso.
+            </p>
+
+            <h3>📚 Bibliografia e Fontes de Consulta</h3>
+            <ul class="bibliography">
+                <li>
+                    <strong>ABNT NBR 16274:2014</strong> —
+                    Sistemas fotovoltaicos conectados à rede — Requisitos.
+                </li>
+                <li>
+                    <strong>ABNT NBR 16690:2019</strong> —
+                    Projeto de sistemas fotovoltaicos — Requisitos.
+                </li>
+                <li>
+                    <strong>Maghami, M. R. et al. (2016)</strong> —
+                    Power loss due to soiling on solar panel: A review.
+                    <em>Renewable and Sustainable Energy Reviews</em>, 59, 1307–1316.
+                </li>
+                <li>
+                    <strong>Mani, M. &amp; Pillai, R. (2010)</strong> —
+                    Impact of dust on solar photovoltaic (PV) performance.
+                    <em>Renewable and Sustainable Energy Reviews</em>, 14(9), 3124–3131.
+                </li>
+                <li>
+                    <strong>Kimber, A. et al. (2006)</strong> —
+                    The Effect of Soiling on Large Grid-Connected Photovoltaic Systems.
+                    <em>IEEE 4th World Conference on Photovoltaic Energy Conversion</em>.
+                </li>
+                <li>
+                    <strong>Pavan, A. M. et al. (2013)</strong> —
+                    Effect of Soiling on the Performance of PV Systems.
+                    <em>IEEE Photovoltaic Specialists Conference</em>.
+                </li>
+                <li>
+                    <strong>IDEAL — Impact of Soiling on PV Systems</strong> —
+                    Estudos de campo e dados empíricos de usinas reais.
+                    <em>National Renewable Energy Laboratory (NREL)</em>.
+                </li>
+                <li>
+                    <strong>Sarver, T. et al. (2013)</strong> —
+                    A comprehensive review of the impact of dust on the use of solar energy.
+                    <em>Solar Energy</em>, 99, 112–130.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer>
+        <div class="container footer-inner">
+            <p><strong>SNDLimp</strong> © 2026 — Todos os direitos reservados.</p>
+            <p>Ferramenta interna | v1.0 | Em fase de validação</p>
+            <p class="footer-contact">
+                🌐 <a href="https://sndlimp.com.br" rel="nofollow">sndlimp.com.br</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ═══════════ JAVASCRIPT ═══════════ -->
+    <script>
+        // ─── MAPA DE IRRADIAÇÃO POR UF ───
+        const IRRADIATION_BY_UF = {
+            'AC': 4.8, 'AL': 5.2, 'AP': 4.9, 'AM': 4.7, 'BA': 5.4,
+            'CE': 5.6, 'DF': 5.1, 'ES': 5.0, 'GO': 5.2, 'MA': 5.0,
+            'MT': 5.0, 'MS': 5.1, 'MG': 5.0, 'PA': 4.8, 'PB': 5.4,
+            'PR': 4.9, 'PE': 5.5, 'PI': 5.5, 'RJ': 4.9, 'RN': 5.6,
+            'RS': 4.5, 'RO': 4.8, 'RR': 4.6, 'SC': 4.6, 'SP': 4.9,
+            'SE': 5.3, 'TO': 5.1
+        };
+
+        // ─── MENSAGENS SPIN SELLING ───
+        const MESSAGES = {
+            technical: {
+                label: '📊 Diagnóstico Técnico',
+                variants: [
+                    {
+                        title: 'Situação — Dados objetivos',
+                        text: 'Olá [CLIENTE], tudo bem?\n\n'
+                            + 'Passando aqui com um dado objetivo sobre sua usina solar.\n\n'
+                            + 'Fiz uma simulação técnica e, considerando o período sem limpeza '
+                            + 'e as condições da sua região, a estimativa é de uma perda de '
+                            + '[PERDA]% na geração — equivalente a aproximadamente '
+                            + 'R$ [VALOR] por mês.\n\n'
+                            + 'É um número que vale a pena acompanhar de perto.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Problema — O dado real',
+                        text: 'Olá [CLIENTE], uma curiosidade técnica sobre sua usina.\n\n'
+                            + 'Com [DIAS] dias sem manutenção, o acúmulo de sujeira já pode estar '
+                            + 'causando uma perda de [PERDA]% na geração.\n\n'
+                            + 'Em usinas similares na região, esse nível de perda representa '
+                            + 'R$ [VALOR] mensais que deixam de ser gerados.\n\n'
+                            + 'Quer dar uma olhada no diagnóstico completo?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Implicação — Tendência de agravamento',
+                        text: 'Olá [CLIENTE], tudo certo?\n\n'
+                            + 'Uma observação técnica: sua usina está há [DIAS] dias sem limpeza, '
+                            + 'e a projeção indica perda de [PERDA]% na eficiência.\n\n'
+                            + 'O ponto de atenção é que, sem intervenção, essa curva tende a '
+                            + 'se agravar — a sujeira acumulada acelera novas deposições.\n\n'
+                            + 'Vale ficar de olho.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Necessidade — Solução baseada em dados',
+                        text: 'Olá [CLIENTE], boa tarde!\n\n'
+                            + 'Com base na simulação que rodei aqui, identificamos um potencial '
+                            + 'de recuperação de [PERDA]% na geração da sua usina.\n\n'
+                            + 'Isso representa trazer de volta cerca de R$ [VALOR]/mês '
+                            + 'para a sua produção.\n\n'
+                            + 'Posso te enviar uma proposta de limpeza com o retorno esperado?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    }
+                ]
+            },
+            financial: {
+                label: '💰 Impacto Financeiro',
+                variants: [
+                    {
+                        title: 'Situação — Quanto está perdendo',
+                        text: 'Olá [CLIENTE], tudo bem?\n\n'
+                            + 'Fiz uma simulação rápida aqui e o resultado chamou a atenção.\n\n'
+                            + 'Com [DIAS] dias sem limpeza, sua usina pode estar perdendo '
+                            + 'R$ [VALOR] por mês — mais de R$ [ANUAL] por ano.\n\n'
+                            + 'É um valor que faz diferença, não acha?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Problema — Dinheiro desperdiçado',
+                        text: 'Olá [CLIENTE], tudo certo?\n\n'
+                            + 'Sabe aquela energia que sua usina deixa de gerar por causa '
+                            + 'da sujeira? Pois é — segundo a simulação, o valor já passa '
+                            + 'de R$ [VALOR] mensais.\n\n'
+                            + 'É dinheiro que se perde sem perceber.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Implicação — Impacto acumulado',
+                        text: 'Olá [CLIENTE], tudo bem?\n\n'
+                            + 'Tem um número que vale a pena considerar: sua usina já acumula '
+                            + 'aproximadamente R$ [ACUMULADO] de perda desde a última limpeza.\n\n'
+                            + 'O impacto financeiro da sujeira é silencioso, mas real.\n\n'
+                            + 'Quer ver o detalhamento?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Necessidade — ROI da limpeza',
+                        text: 'Olá [CLIENTE], boa tarde!\n\n'
+                            + 'Simulamos aqui o custo-benefício: uma limpeza profissional '
+                            + 'custa uma fração do que você está perdendo mensalmente '
+                            + '(R$ [VALOR]/mês).\n\n'
+                            + 'O retorno sobre o investimento da limpeza é imediato — '
+                            + 'literalmente no primeiro mês você já recupera parte do que '
+                            + 'vinha perdendo.\n\n'
+                            + 'Quer que eu monte essa conta?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    }
+                ]
+            },
+            efficiency: {
+                label: '🔋 Eficiência Energética',
+                variants: [
+                    {
+                        title: 'Situação — Performance atual',
+                        text: 'Olá [CLIENTE], tudo bem?\n\n'
+                            + 'Fiz uma análise da performance estimada da sua usina — '
+                            + 'com [DIAS] dias sem limpeza, a eficiência projetada está '
+                            + '[PERDA]% abaixo do potencial máximo.\n\n'
+                            + 'Ou seja, você está gerando menos energia do que poderia.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Problema — Queda de rendimento',
+                        text: 'Olá [CLIENTE], tudo certo?\n\n'
+                            + 'A sujeira acumulada nas placas não é só estética — '
+                            + 'ela literalmente bloqueia a luz do sol.\n\n'
+                            + 'Na sua usina, a simulação aponta [PERDA]% de perda '
+                            + 'na eficiência. Cada ponto percentual conta na conta de luz.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Necessidade — Como recuperar',
+                        text: 'Olá [CLIENTE], boa tarde!\n\n'
+                            + 'A boa notícia é que essa perda de [PERDA]% na eficiência '
+                            + 'pode ser completamente recuperada com uma limpeza profissional.\n\n'
+                            + 'Sua usina volta a gerar no potencial máximo, e você aproveita '
+                            + 'cada raio de sol.\n\n'
+                            + 'Quer saber mais?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    }
+                ]
+            },
+            asset: {
+                label: '🛡️ Preservação do Ativo',
+                variants: [
+                    {
+                        title: 'Situação — Proteção do investimento',
+                        text: 'Olá [CLIENTE], tudo bem?\n\n'
+                            + 'Sua usina solar é um ativo de longo prazo — e como todo '
+                            + 'ativo, precisa de manutenção.\n\n'
+                            + 'A simulação indica [PERDA]% de perda por sujeira acumulada. '
+                            + 'Além da perda financeira, a sujeira retida pode acelerar '
+                            + 'a degradação dos módulos a longo prazo.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Problema — Degradação acelerada',
+                        text: 'Olá [CLIENTE], tudo certo?\n\n'
+                            + 'Além da perda imediata de [PERDA]% na geração, a sujeira '
+                            + 'acumulada cria pontos quentes (hotspots) que podem danificar '
+                            + 'as células fotovoltaicas permanentemente.\n\n'
+                            + 'Preservar o painel é preservar seu investimento.\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    },
+                    {
+                        title: 'Necessidade — Manutenção preventiva',
+                        text: 'Olá [CLIENTE], boa tarde!\n\n'
+                            + 'Manutenção preventiva é o melhor caminho para proteger '
+                            + 'seu ativo solar.\n\n'
+                            + 'Com a limpeza periódica, você elimina a perda de [PERDA]%, '
+                            + 'prolonga a vida útil dos módulos e mantém a garantia em dia.\n\n'
+                            + 'Quer conversar sobre um plano de manutenção?\n\n'
+                            + '📱 Faça você mesmo o cálculo: [LINK]'
+                    }
+                ]
+            }
+        };
+
+        // ─── FUNÇÃO PRINCIPAL DE CÁLCULO ───
+        function calculateLoss() {
+            const uf = document.getElementById('uf').value.toUpperCase().trim();
+            const city = document.getElementById('city').value.trim();
+            const power = parseFloat(document.getElementById('power').value);
+            const days = parseInt(document.getElementById('days').value);
+            const typeFactor = parseFloat(document.getElementById('type').value);
+            const rainFactor = parseFloat(document.getElementById('rain').value);
+            const tariff = parseFloat(document.getElementById('tariff').value) || 0.85;
+            const monthlyProd = parseFloat(document.getElementById('monthlyProd').value);
+
+            // Validações
+            if (!uf || uf.length !== 2) {
+                alert('Por favor, digite a sigla do estado (ex: RS, SP, MG).');
+                return;
+            }
+            if (!city) {
+                alert('Por favor, informe a cidade.');
+                return;
+            }
+            if (!power || power <= 0) {
+                alert('Por favor, informe a potência do sistema.');
+                return;
+            }
+            if (!days || days <= 0) {
+                alert('Por favor, informe os dias sem limpeza.');
+                return;
+            }
+
+            // Fator de irradiação por UF (default RS)
+            const irradFactor = IRRADIATION_BY_UF[uf] || 4.5;
+
+            // Cálculo da perda: curva exponencial logarítmica
+            // Base: 0.15% ao dia nos primeiros 30 dias, desacelerando
+            const baseDailyLoss = 0.12;
+            const decayRate = 0.97;
+            let cumulativeLoss = 0;
+            for (let d = 1; d <= days; d++) {
+                cumulativeLoss += baseDailyLoss * Math.pow(decayRate, d - 1);
+            }
+
+            // Ajustes
+            let lossPercent = cumulativeLoss * typeFactor * rainFactor;
+
+            // Ajuste por irradiação (regiões mais ensolaradas sofrem mais)
+            lossPercent *= (irradFactor / 4.5);
+
+            // Limitar a 35% máximo (saturação física)
+            lossPercent = Math.min(35, Math.max(0.5, lossPercent));
+
+            // Cálculo da produção mensal
+            let monthlyKwh;
+            if (monthlyProd && monthlyProd > 0) {
+                monthlyKwh = monthlyProd;
+            } else {
+                // Estimativa: 1kWp gera ~120 kWh/mês no Sul, ajustado por irradiação
+                monthlyKwh = power * 120 * (irradFactor / 4.5);
+            }
+
+            const lossKwh = monthlyKwh * (lossPercent / 100);
+            const lossMonthly = lossKwh * tariff;
+            const lossAccumulated = lossMonthly * (days / 30);
+            const lossAnnual = lossMonthly * 12;
+
+            // Exibir resultados
+            showResults(lossPercent, lossKwh, lossMonthly, lossAccumulated, lossAnnual);
+        }
+
+        // ─── EXIBIR RESULTADOS ───
+        function showResults(percent, kwh, monthly, accumulated, annual) {
+            const resultsSection = document.getElementById('results');
+            const cards = document.getElementById('resultCards');
+            const gaugeFill = document.getElementById('gaugeFill');
+
+            // Determinar classe de severidade
+            let severityClass = 'green';
+            if (percent > 15) severityClass = 'red';
+            else if (percent > 5) severityClass = 'yellow';
+
+            // Atualizar gauge
+            const gaugePercent = Math.min(100, (percent / 35) * 100);
+            gaugeFill.style.width = gaugePercent + '%';
+            gaugeFill.className = 'gauge-fill ' + severityClass;
+
+            // Montar cards
+            cards.innerHTML = ''
+                + '<div class="result-card ' + severityClass + '">'
+                    + '<span class="result-label">Perda Estimada</span>'
+                    + '<span class="result-value">' + percent.toFixed(1) + '%</span>'
+                    + '<span class="result-desc">da geração potencial</span>'
+                + '</div>'
+                + '<div class="result-card ' + severityClass + '">'
+                    + '<span class="result-label">Perda Mensal</span>'
+                    + '<span class="result-value">' + kwh.toFixed(0) + ' kWh</span>'
+                    + '<span class="result-desc">' + formatCurrency(monthly) + '/mês</span>'
+                + '</div>'
+                + '<div class="result-card ' + severityClass + '">'
+                    + '<span class="result-label">Impacto Acumulado</span>'
+                    + '<span class="result-value">' + formatCurrency(accumulated) + '</span>'
+                    + '<span class="result-desc">desde a última limpeza</span>'
+                + '</div>'
+                + '<div class="result-card ' + severityClass + '">'
+                    + '<span class="result-label">Projeção Anual</span>'
+                    + '<span class="result-value">' + formatCurrency(annual) + '</span>'
+                    + '<span class="result-desc">se mantido sem limpeza</span>'
+                + '</div>';
+
+            // Gráfico de barras (produção potencial vs atual)
+            const potentialKwh = kwh / (percent / 100);
+            const actualKwh = potentialKwh - kwh;
+            const chartEl = document.getElementById('barChart');
+            chartEl.innerHTML = ''
+                + '<div class="chart-title">Produção Mensal Estimada</div>'
+                + '<div class="bar-row">'
+                    + '<span class="bar-label">Potencial</span>'
+                    + '<div class="bar-track">'
+                        + '<div class="bar-fill bar-blue" style="width: 100%">'
+                            + potentialKwh.toFixed(0) + ' kWh'
+                        + '</div>'
+                    + '</div>'
+                + '</div>'
+                + '<div class="bar-row">'
+                    + '<span class="bar-label">Atual</span>'
+                    + '<div class="bar-track">'
+                        + '<div class="bar-fill bar-green" style="width: ' + (100 - percent) + '%">'
+                            + actualKwh.toFixed(0) + ' kWh'
+                        + '</div>'
+                    + '</div>'
+                + '</div>'
+                + '<div class="bar-row">'
+                    + '<span class="bar-label">Perdido</span>'
+                    + '<div class="bar-track">'
+                        + '<div class="bar-fill bar-red" style="width: ' + percent + '%">'
+                            + kwh.toFixed(0) + ' kWh'
+                        + '</div>'
+                    + '</div>'
+                + '</div>';
+
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ─── FORMATAÇÃO DE MOEDA ───
+        function formatCurrency(value) {
+            return 'R$ ' + value.toFixed(2).replace('.', ',');
+        }
+
+        // ─── COMPARTILHAR ───
+        function selectMessage() {
+            const category = document.getElementById('msgCategory').value;
+            const variantGroup = document.getElementById('msgVariantGroup');
+            const variantSelect = document.getElementById('msgVariant');
+
+            if (!category || !MESSAGES[category]) {
+                document.getElementById('msgPreview').style.display = 'none';
+                variantGroup.style.display = 'none';
+                return;
+            }
+
+            variantSelect.innerHTML = '';
+            const cat = MESSAGES[category];
+            cat.variants.forEach(function(v, i) {
+                var opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = v.title;
+                variantSelect.appendChild(opt);
+            });
+
+            variantGroup.style.display = 'block';
+            renderMessage();
+        }
+
+        function renderMessage() {
+            const category = document.getElementById('msgCategory').value;
+            const variantIdx = parseInt(document.getElementById('msgVariant').value);
+            const preview = document.getElementById('msgPreview');
+            const output = document.getElementById('msgOutput');
+
+            if (!category || isNaN(variantIdx)) {
+                preview.style.display = 'none';
+                return;
+            }
+
+            const msg = MESSAGES[category].variants[variantIdx].text;
+
+            // Substituir placeholders por valores reais (se disponíveis)
+            const percentEl = document.querySelector('.result-card .result-value');
+            const percent = percentEl ? percentEl.textContent : '[PERDA]';
+            const power = parseFloat(document.getElementById('power').value) || 0;
+            const days = parseInt(document.getElementById('days').value) || 0;
+            const tariff = parseFloat(document.getElementById('tariff').value) || 0.85;
+            const typeFactor = parseFloat(document.getElementById('type').value) || 1.0;
+            const rainFactor = parseFloat(document.getElementById('rain').value) || 0.5;
+            const uf = document.getElementById('uf').value.toUpperCase() || 'RS';
+            const irradFactor = IRRADIATION_BY_UF[uf] || 4.5;
+            const monthlyKwh = power * 120 * (irradFactor / 4.5);
+            const lossPercent = parseFloat(percent) || 10;
+            const lossKwh = monthlyKwh * (lossPercent / 100);
+            const lossMonthly = lossKwh * tariff;
+            const lossAccumulated = lossMonthly * (days / 30);
+            const lossAnnual = lossMonthly * 12;
+
+            let filled = msg
+                .replace('[PERDA]', lossPercent.toFixed(1))
+                .replace('[VALOR]', formatCurrency(lossMonthly))
+                .replace('[ACUMULADO]', formatCurrency(lossAccumulated))
+                .replace('[ANUAL]', formatCurrency(lossAnnual))
+                .replace('[DIAS]', days.toString())
+                .replace('[LINK]', window.location.href || 'https://sndlimp.com.br/calc');
+
+            output.value = filled;
+            preview.style.display = 'block';
+        }
+
+        function copyMessage() {
+            const text = document.getElementById('msgOutput').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Mensagem copiada para a área de transferência!');
+            });
+        }
+
+        function sendWhatsApp() {
+            const text = document.getElementById('msgOutput').value;
+            if (!text) return;
+            const encoded = encodeURIComponent(text);
+            window.open('https://wa.me/?text=' + encoded, '_blank');
+        }
+    </script>
+</body>
+</html>
