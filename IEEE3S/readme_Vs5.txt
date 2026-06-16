@@ -1,7 +1,7 @@
 SNDLimp — Projeto IEEE3S
 =========================
 Empresa: SNDLimp — Limpeza Técnica de Placas Solares
-Parceiro Técnico: IEEE Procução Solar — Investimento Especial em Energia
+Parceiro Técnico: IEEE Produção Solar — Investimento Especial em Energia
 Autor do Método: Eduardo Sidegum
 Data: Junho/2026
 
@@ -21,7 +21,7 @@ SEO
 
 ESTRUTURA DO CÁLCULO
 --------------------
-- Perda nominal: 2,5% ao mês (linear), teto 30%
+- Perda nominal: ajustada por indice de normal pluviometrica, teto 30%
 - Fator de queda efetiva: 40% no teto
 - Dados INMET 1991-2020 para 27 capitais
 - Fallback para RS em caso de UF inválida
