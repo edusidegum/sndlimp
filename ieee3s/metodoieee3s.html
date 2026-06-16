@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNDLimp — Metodologia IEEE3S</title>
+  <meta name="description" content="SNDLimp — Metodologia IEEE3S de cálculo de perdas por sujidade em usinas solares. Transparência total: entenda como diagnosticamos a eficiência do seu sistema fotovoltaico.">
+  <meta name="keywords" content="limpeza de placas solares, cálculo perda solar, eficiência fotovoltaica, diagnóstico usina solar, Vale do Sinos, Vale do Taquari, Poço das Antas, RS">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="geo.region" content="BR-RS">
+  <meta name="geo.placename" content="Vale do Sinos • Vale do Taquari • Rio Grande do Sul • Brasil">
+  <meta name="geo.position" content="-29.4333;-51.4167">
+  <meta name="ICBM" content="-29.4333, -51.4167">
+  <meta name="DC.coverage" content="Vale do Sinos, Vale do Taquari, Rio Grande do Sul, Brasil">
+  <meta name="DC.description" content="SNDLimp — Metodologia IEEE3S de diagnóstico de perdas em usinas solares.">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <style>
+    body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --bg-elevated: #141414;
+      --bg-card: #1a1a1a;
+      --border: #2a2a2a;
+      --gold: #f59e0b;
+      --gold-light: #fbbf24;
+      --gold-muted: rgba(245, 158, 11, 0.15);
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --text-secondary: #737373;
+      --radius: 12px;
+      --max-width: 900px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 40px;
+      text-align: center;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .logo i { color: var(--gold); font-size: 1.5rem; }
+    h1 {
+      font-size: clamp(1.6rem, 5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+    h1 .accent { color: var(--gold); }
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    main { padding: 56px 0 72px; }
+    section { margin-bottom: 56px; }
+    section:last-of-type { margin-bottom: 0; }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+    }
+    h2 i { color: var(--gold); font-size: 1.15rem; }
+    p { margin: 0 0 18px; color: var(--text-muted); }
+    p:last-child { margin-bottom: 0; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .card:last-child { margin-bottom: 0; }
+    .highlight-box {
+      background: var(--gold-muted);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .highlight-box p { color: var(--text); margin: 0; }
+    .highlight-box strong { color: var(--gold-light); }
+    ul.clean-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.clean-list li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 14px;
+      color: var(--text-muted);
+    }
+    ul.clean-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 3px;
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+    .references-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .reference-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      transition: border-color 0.2s ease;
+    }
+    .reference-card:hover { border-color: var(--gold); }
+    .reference-card h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .reference-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .reference-card .doi {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      word-break: break-all;
+    }
+    footer {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+    @media (min-width: 640px) {
+      .references-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 768px) {
+      header { padding: 64px 0 56px; }
+      main { padding: 72px 0 96px; }
+      .card { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <i class="fa-solid fa-solar-panel"></i>
+        <span>SNDLimp</span>
+      </div>
+      <h1>Metodologia <span class="accent">IEEE3S</span> — Diagnóstico Transparente</h1>
+      <p class="subtitle">Entenda como calculamos o impacto real da sujidade no seu sistema fotovoltaico.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2><i class="fa-solid fa-calculator"></i> Como chegamos ao número certo?</h2>
+      <div class="card">
+        <p>Na SNDLimp, acreditamos que um diagnóstico honesto começa com uma metodologia defensável. Não trabalhamos com chutes ou porcentagens genéricas — cada número que apresentamos tem fundamento técnico e pode ser explicado.</p>
+        <p>O valor de <strong>2,5% de perda por mês</strong> utilizado em nossas análises parte de uma referência internacional amplamente reconhecida:</p>
+        <div class="highlight-box">
+          <p><strong>0,15% de perda diária por sujidade</strong> — modelo Kimber, adotado pelo Sandia National Laboratories e implementado em bibliotecas como o pvlib. Isso equivale a aproximadamente <strong>4,5% ao mês</strong> em condições sem chuva efetiva.</p>
+        </div>
+        <p>Como o Rio Grande do Sul tem uma pluviosidade relativamente alta, ajustamos esse padrão para a realidade local. A taxa de <strong>2,5% ao mês</strong> já desconta cerca de <strong>44% do benchmark internacional</strong>, refletindo o efeito de limpeza natural promovido pela chuva.</p>
+        <p>Em outras palavras: usamos uma estimativa <strong>conservadora</strong>. Nosso objetivo não é superestimar o problema, mas apresentar uma perda realista e passível de verificação.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><i class="fa-solid fa-cloud-rain"></i> Por que não usamos apenas a média de chuva?</h2>
+      <div class="card">
+        <p>O volume total de chuva, por si só, não conta toda a história. Nem toda precipitação limpa os módulos fotovoltaicos de forma eficiente.</p>
+        <p>Chuvas leves — abaixo de <strong>3 mm/dia</strong> — podem, em alguns casos, agravar a sujidade ao criar uma crosta fina que fixa as partículas na superfície do vidro. Estudos recentes mostram que a chuva passa a ter efeito de limpeza significativo apenas acima de um limiar de aproximadamente <strong>6 mm em um único evento</strong>.</p>
+        <p>Porto Alegre registra uma média de cerca de <strong>124 mm/mês</strong>, mas grande parte dessa precipitação se concentra em eventos leves e frequentes — a típica garoa do sul do Brasil — que <strong>não garantem a remoção completa da sujeira</strong>. Esse comportamento é confirmado por dados meteorológicos históricos da região.</p>
+        <p>Por isso, nosso cálculo não se baseia apenas na média mensal de chuva, mas em como ela se manifesta na prática.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><i class="fa-solid fa-flask"></i> E o que diz a ciência local?</h2>
+      <div class="card">
+        <p>Pesquisadores brasileiros também mediram esse efeito em condições reais. O estudo de <strong>Costa et al. (2021)</strong>, publicado na <em>Revista Brasileira de Energia Solar</em> em parceria com a UFMG e o NREL (EUA), analisou a taxa de sujidade de módulos fotovoltaicos em diferentes zonas climáticas do Brasil.</p>
+        <p>As medições em <strong>Porto Alegre</strong> encontraram um <em>Solar Ratio</em> (SRatio) entre <strong>0,97 e 0,98</strong> — o que confirma que, mesmo em um clima com chuvas regulares, <strong>as perdas por sujidade existem e são mensuráveis</strong>.</p>
+        <p>Esse resultado é consistente com a estimativa conservadora de 2,5% ao mês que adotamos em nossos diagnósticos.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><i class="fa-solid fa-handshake"></i> Nosso compromisso com você</h2>
+      <div class="card">
+        <ul class="clean-list">
+          <li>Usamos o padrão internacional como referência (Kimber/pvlib/Sandia) e ajustamos para a realidade do RS.</li>
+          <li>Trabalhamos com estimativas conservadoras — preferimos errar para baixo do que superestimar.</li>
+          <li>Nossos cálculos consideram a região metropolitana, onde poluição urbana e tráfego intenso elevam a deposição de sujeira.</li>
+          <li>A metodologia é aberta para questionamento — a transparência faz parte do nosso serviço.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2><i class="fa-solid fa-book-open"></i> Referências científicas utilizadas</h2>
+      <div class="references-grid">
+        <div class="reference-card">
+          <h3>Kimber et al. (2006)</h3>
+          <p>Modelo de perda por sujidade do PVPMC/Sandia National Laboratories. Padrão internacional adotado pelo pvlib e SolarAnywhere.</p>
+        </div>
+        <div class="reference-card">
+          <h3>Costa et al. (2021)</h3>
+          <p>"Determinação das Taxas de Sujidade para Módulos Fotovoltaicos em Diferentes Zonas Climáticas Brasileiras." <em>Revista Brasileira de Energia Solar</em>, UFMG/NREL.</p>
+          <span class="doi">DOI: 10.59627/rbens.2020v11i1.298</span>
+        </div>
+        <div class="reference-card">
+          <h3>Norde Santos et al. (2024)</h3>
+          <p>"Cleaning of Photovoltaic Modules through Rain: Experimental Study and Modeling Approaches." <em>Solar RRL</em>, DLR Germany. Estudo sobre limiar de limpeza por chuva.</p>
+        </div>
+        <div class="reference-card">
+          <h3>INMET</h3>
+          <p>Série histórica de precipitação (1991–2020), estação Porto Alegre.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>SNDLimp © 2026 — Diagnóstico de Eficiência Fotovoltaica. Atendemos Vale do Sinos, Vale do Taquari, Poço das Antas e região.</p>
+    </div>
+  </footer>
+</body>
+</html>
