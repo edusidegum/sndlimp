@@ -1,0 +1,58 @@
+Informações relevantes, sobre projeto já iniciado, e que vamos entender: Primeiro Fato:  já iniciamos o processo, com uma página base, vinculada a nossa página.  Não vamos alterar o parâmetros de head e configuração da página, mas vamos profissionalizar os dados, inserindo campos de informação do estado da federação, para buscar e vincular as medianas de precipitação, conforme iremos inserir no próximo bloco.  Inicialmente, avalie nossa iniciativa, e vamos tratar de melhorar a página.  Considere que todos arquivos adicionais necessários, ficarão dentro da mesma pasta de projeto GitHub, denominada IEEE3S.  Avalie a página, suas métricas, e manteremos o desenho e estilo da mesma, sem alteração alguma em footer e topbar, bem como SEO do HEAD, avaliado em 100 pelo google . https://edusidegum.github.io/sndlimp/economia.html 
+
+
+Limitação Técnica dos Dados Oficiais
+O Instituto Nacional de Meteorologia (INMET), órgão oficial de referência, utiliza a metodologia de Normais Climatológicas (1991-2020) para descrever o clima. É fundamental ressaltar que o INMET publica as médias aritméticas como padrão para estas normais.
+
+Tabela de Referência (Médias Climatológicas 1991-2020)
+Abaixo, apresento os dados de precipitação acumulada (em mm) extraídos da normal oficial. Estes valores servem como balizador para o comportamento pluviométrico:
+
+Capital,JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ
+Belém,358,363,417,344,240,148,134,114,108,105,115,205
+Brasília,225,185,190,115,30,10,10,15,50,150,230,250
+Porto Alegre,120,105,100,115,110,125,135,120,135,120,110,105
+Fortaleza,140,190,320,330,210,120,50,20,10,10,10,30 
+
+No código do site apresentado, considerei para inicio os ´parametos abaixo para inicio, cujas informações precisam ser expandidas.  algumas observações sobre a pagina economia.htl que derivará para o app:  Cálculo da porcentagem de perda nominal por falta de limpeza P_pct = min(2.5 · m, 30) (%) (obs.: 2.5% por mês com teto 30% quando m ≥ 12)
+
+Potência instalada total em kWp P_mod_kW = P_mod_W / 1000 (kW por módulo) P_inst_kWp = N · P_mod_kW = N · (WP_PLACA / 1000) (kWp)
+
+Geração nominal mensal (energia produzida sem considerar sujeira) — assumindo H_p horas-pico por dia e D_m dias por mês: E_nom_mês = P_inst_kWp · H_p · D_m (kWh/mês)
+
+Fator de queda adotado pelo modelo (fração da geração que efetivamente se perde) No código o autor normaliza P_pct por 30% e considera que, quando P_pct=30%, isso corresponde a 40% de queda efetiva na produção. Ou seja: f_q = (P_pct / 30) · 0.40 (fração entre 0 e 0.40)
+
+Observação: portanto f_q é uma FRACÇÃO (por exemplo 0.10 = 10% de perda da produção).
+
+Energia perdida por mês (em kWh) E_perda_mês = E_nom_mês · f_q Substituindo E_nom_mês: E_perda_mês = [ N · (WP_PLACA / 1000) · H_p · D_m ] · [ (P_pct / 30) · 0.40 ]
+
+Perda financeira mensal (R$) Perda_mensal_R = E_perda_mês · C
+
+Projeção anual (12 meses) Perda_anual_R = Perda_mensal_R · 12
+
+Perda por placa (R$/placa por mês) Perda_por_placa_R = Perda_mensal_R / N
+
+Perda acumulada desde a última limpeza (soma mês-a-mês) Perda_acumulada_R = sum_{i=1}^{m} Perda_mensal_R(i) onde, para cada mês i: P_pct(i) = min(2.5 · i, 30) f_q(i) = (P_pct(i) / 30) · 0.40 E_perda_mês(i) = N · (WP_PLACA / 1000) · H_p · D_m · f_q(i) Perda_mensal_R(i) = E_perda_mês(i) · C
+
+Portanto: Perda_acumulada_R = C · N · (WP_PLACA / 1000) · H_p · D_m · sum_{i=1}^{m} [ (min(2.5·i,30) / 30) · 0.40 ]
+
+Resumo compacto combinando constantes: Defina K = (WP_PLACA / 1000) · H_p · D_m (kWh por módulo por mês nominal) Então: E_perda_mês = N · K · ( (min(2.5·m,30) / 30) · 0.40 ) Perda_mensal_R = C · N · K · ( (min(2.5·m,30) / 30) · 0.40 ) Perda_acumulada_R = C · N · K · 0.40 · sum_{i=1}^{m} ( min(2.5·i,30) / 30 )
+
+Unidades:
+
+K em kWh por módulo por mês
+E_perda_mês em kWh/mês
+Perda_mensal_R e Perda_anual_R em R$
+Observações e pontos críticos sobre a lógica:
+
+A regra P_pct = min(2.5·m, 30) é linear e simplificada; na prática soiling pode ter comportamento não linear e sazonal.
+O código interpreta o P_pct (0..30%) como um índice que, quando normalizado por 30%, gera até 40% de perda real (fator 0.40). Ou seja, 30% de “inibição de captação” no UI é convertido em 40% de perda de geração — isso é uma hipótese empírica do autor e deve ser documentada/justificada se for usada em diagnóstico formal.
+A fórmula assume que H_p e WP_PLACA são corretos e constantes; porém H_p varia por local / mês (sazonal).
+K (e portanto E_nom_mês) assume que todos os módulos apontam/operam na mesma condição e não considera perdas adicionais (inversor, cabos, temperatura, sombreamento, mismatch, degradação de módulo) — esses já estão implicitamente ignorados ou podem estar embutidos na hipótese de 40% máxima.
+Quando N=0 ou m=0 o código limpa resultados corretamente.
+Perda_por_placa_R pode ficar indefinida se N=0 — já tratado no código, pois evita cálculo.
+Sugestões rápidas (se desejar melhorar a modelagem):
+
+Separar explicitamente “soiling fraction” (fração de radiação bloqueada) de “perda de energia” (que depende da curva I-V, temperatura, clipping do inversor etc.). Evitar mapear % soiling diretamente para % perda sem justificativa.
+Tornar H_p entrada por estação/local (ou usar tabela mensal) para estimativas mais precisas.
+Incluir fatores de perdas fixas do sistema (η_inv, perdas de mismatch, temperatura) para obter E_nom_mês mais realista.
+Documentar a origem do fator 0.40 (por que 40% de perda quando P_pct = 30%?) ou permitir esse parâmetro configurável.

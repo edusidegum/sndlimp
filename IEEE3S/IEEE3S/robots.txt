@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /ieee3s/
+
+Sitemap: https://edusidegum.github.io/sndlimp/sitemap.xml
