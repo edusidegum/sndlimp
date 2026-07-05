@@ -1,0 +1,19 @@
+/* assets/css/fonts.css */
+
+/* Montserrat - Bold (700) */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat-v25-latin-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Open Sans - Regular (400) */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-v34-latin-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
