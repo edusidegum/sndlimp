@@ -1,4 +1,20 @@
+# Robots.txt — SNDLimp
 User-agent: *
-Allow: /sndlimp/
+Allow: /
+Disallow: /sndlimp/doc/
+Disallow: /sndlimp/data/
+Disallow: /sndlimp/scripts/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /sndlimp/doc/
+Disallow: /sndlimp/data/
+Disallow: /sndlimp/scripts/
+
+User-agent: bingbot
+Allow: /
+Disallow: /sndlimp/doc/
+Disallow: /sndlimp/data/
+Disallow: /sndlimp/scripts/
 
 Sitemap: https://edusidegum.github.io/sndlimp/sitemap.xml
