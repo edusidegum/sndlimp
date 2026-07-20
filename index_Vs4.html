@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SNDLimp — Limpeza especializada em placas solares. Atendemos Novo Hamburgo, São Leopoldo, Vale do Sinos e Vale do Taquari/RS. Recupere até 25% de eficiência dos seus painéis com limpeza técnica profissional.">
+    <meta name="keywords" content="limpeza placas solares, limpeza painéis solares, eficiência fotovoltaica, Novo Hamburgo, São Leopoldo, Vale do Sinos, Vale do Taquari, SNDLimp">
+    <meta name="author" content="SNDLimp">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://edusidegum.github.io/sndlimp/">
+    <meta property="og:title" content="SNDLimp — Limpeza Especializada em Placas Solares">
+    <meta property="og:description" content="Recupere até 25% de eficiência dos seus painéis solares. Atendemos Vale do Sinos e Vale do Taquari/RS.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/edusidegum/sndlimp/refs/heads/main/img/servico5.webp">
+    <meta property="og:url" content="https://edusidegum.github.io/sndlimp/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SNDLimp — Limpeza Especializada em Placas Solares">
+    <meta name="twitter:description" content="Recupere até 25% de eficiência dos seus painéis solares.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/edusidegum/sndlimp/refs/heads/main/img/servico5.webp">
+    <title>SNDLimp — Limpeza Especializada em Placas Solares</title>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "SNDLimp",
+        "description": "Limpeza especializada em placas solares. Atendemos Vale do Sinos e Vale do Taquari/RS.",
+        "url": "https://edusidegum.github.io/sndlimp/",
+        "areaServed": ["Novo Hamburgo", "São Leopoldo", "Campo Bom", "Sapiranga", "Estância Velha", "Portão", "Lajeado", "Estrela", "Teutônia", "Encantado", "Arroio do Meio", "Taquari", "Poço das Antas"],
+        "address": { "@type": "PostalAddress", "addressRegion": "RS" }
+    }
+    </script>
+    <style>
+        /* ============================================
+           SNDLimp — styles1.css (inline, v3 com sol)
+           DNA: ANIMADO1.CSS editorial + fundo preto
+           ============================================ */
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --text: #e8e8e8;
+            --text-muted: #999;
+            --accent: #E8752A;
+            --accent-glow: rgba(232,117,42,0.35);
+            --accent-2: #2A8C9E;
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --font-display: 'Playfair Display', 'Georgia', serif;
+            --font-body: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+            --header-h: 64px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        /* Fundo com partículas sutis */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.15), transparent),
+                radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.10), transparent),
+                radial-gradient(1px 1px at 40% 55%, rgba(255,255,255,0.12), transparent),
+                radial-gradient(1px 1px at 55% 25%, rgba(255,255,255,0.08), transparent),
+                radial-gradient(1px 1px at 70% 45%, rgba(255,255,255,0.14), transparent),
+                radial-gradient(1px 1px at 85% 65%, rgba(255,255,255,0.09), transparent),
+                radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.11), transparent),
+                radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.07), transparent),
+                radial-gradient(1px 1px at 75% 10%, rgba(255,255,255,0.13), transparent),
+                radial-gradient(1px 1px at 90% 30%, rgba(255,255,255,0.10), transparent);
+        }
+
+        /* ============ SOL SYSTEM ============ */
+        #sun-system {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #sun-orb {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, rgba(255,200,120,0.9), rgba(232,117,42,0.6) 40%, rgba(200,80,20,0.2) 70%, transparent 100%);
+            filter: blur(2px);
+            transform: translate(-50%, -50%);
+            will-change: left, top;
+        }
+
+        #sun-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,117,42,0.18) 0%, rgba(232,117,42,0.06) 35%, transparent 70%);
+            transform: translate(-50%, -50%);
+            will-change: left, top;
+        }
+
+        /* ============ SKIP LINK ============ */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            z-index: 9999;
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            font-weight: 600;
+            text-decoration: none;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* ============ HEADER ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            transition: background 0.35s, backdrop-filter 0.35s, box-shadow 0.35s;
+        }
+        header.scrolled {
+            background: rgba(10,10,10,0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+        header .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        header .logo span { color: var(--accent); }
+        header nav { display: flex; gap: 20px; align-items: center; }
+        header nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.25s;
+        }
+        header nav a:hover { color: #fff; }
+        header .btn-header {
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: background 0.25s, box-shadow 0.25s;
+        }
+        header .btn-header:hover { background: #f08040; box-shadow: 0 0 24px var(--accent-glow); }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: calc(var(--header-h) + 48px) 24px 80px;
+            z-index: 2;
+        }
+        .hero-content { max-width: 720px; }
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #bbb;
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .hero-content .highlight-loss {
+            display: inline-block;
+            background: rgba(232,117,42,0.12);
+            border: 1px solid rgba(232,117,42,0.25);
+            border-radius: var(--radius-sm);
+            padding: 12px 24px;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+        .hero-content .highlight-loss strong { color: var(--accent); font-size: 1.1rem; }
+        .btn-simulador-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+            box-shadow: 0 0 32px var(--accent-glow), 0 4px 20px rgba(232,117,42,0.25);
+        }
+        .btn-simulador-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .btn-simulador-hero:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 48px var(--accent-glow), 0 8px 32px rgba(232,117,42,0.35);
+        }
+        .btn-simulador-hero .arrow {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .btn-simulador-hero:hover .arrow { transform: translateX(6px); }
+
+        /* ============ SECTIONS ============ */
+        section {
+            position: relative;
+            z-index: 2;
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        h2 em { font-style: italic; color: var(--accent); }
+        .section-subtitle {
+            color: #999;
+            font-size: 1rem;
+            max-width: 600px;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+
+        /* ============ ECONOMIA CARD ============ */
+        .economia-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+            cursor: pointer;
+        }
+        .economia-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow), 0 8px 32px rgba(0,0,0,0.5);
+            transform: translateY(-4px);
+        }
+        .economia-card .card-img-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+        .economia-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .economia-card:hover img { transform: scale(1.08); }
+        .economia-card .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.35s;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+        .economia-card:hover .card-overlay { opacity: 1; }
+        .economia-card .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transform: translateY(12px);
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .economia-card:hover .card-tag { transform: translateY(0); }
+        .economia-card .card-body { padding: 20px 24px 24px; }
+        .economia-card .card-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .economia-card .card-body p { color: #999; font-size: 0.9rem; line-height: 1.5; }
+
+        /* Pulse ring */
+        .pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: calc(var(--radius) + 4px);
+            border: 2px solid var(--accent);
+            opacity: 0;
+            animation: pulseRing 2.5s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.04); }
+        }
+
+        /* ============ ANTES/DEPOIS ============ */
+        .before-after-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .ba-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+        }
+        .ba-card:hover {
+            transform: translateY(-4px);
+        }
+        .ba-card.antes:hover { border-color: rgba(220,50,50,0.5); box-shadow: 0 0 32px rgba(220,50,50,0.15); }
+        .ba-card.depois:hover { border-color: rgba(42,180,120,0.5); box-shadow: 0 0 32px rgba(42,180,120,0.15); }
+        .ba-card .ba-img-wrap { overflow: hidden; }
+        .ba-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+        .ba-card:hover img { transform: scale(1.05); }
+        .ba-card .ba-label {
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ba-card.antes .ba-label { color: #e55; border-top: 3px solid #e55; }
+        .ba-card.depois .ba-label { color: #2ab478; border-top: 3px solid #2ab478; }
+
+        /* ============ WHY CARDS ============ */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .why-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s, border-color 0.35s, background 0.35s;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 16px;
+            right: 16px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 0 0 3px 3px;
+            transform: scaleX(0.3);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .why-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            background: rgba(255,255,255,0.05);
+        }
+        .why-card:hover::before { transform: scaleX(1); }
+        .why-card .why-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .why-card:hover .why-icon { transform: scale(1.15); }
+        .why-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .why-card p { color: #999; font-size: 0.9rem; line-height: 1.5; }
+
+        /* ============ CTA SECTION ============ */
+        .cta-section {
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+            z-index: 2;
+        }
+        .cta-section .cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 48px 32px;
+        }
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .cta-section p { color: #bbb; margin-bottom: 32px; font-size: 1rem; }
+
+        .btn-simulador {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+            box-shadow: 0 0 32px var(--accent-glow), 0 4px 20px rgba(232,117,42,0.25);
+        }
+        .btn-simulador::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .btn-simulador:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 48px var(--accent-glow), 0 8px 32px rgba(232,117,42,0.35);
+        }
+        .btn-simulador .arrow {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .btn-simulador:hover .arrow { transform: translateX(6px); }
+
+        /* ============ FOOTER ============ */
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            color: #666;
+            font-size: 0.85rem;
+        }
+        footer a { color: #999; text-decoration: none; transition: color 0.25s; }
+        footer a:hover { color: var(--accent); }
+
+        /* ============ COOKIE BANNER ============ */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: rgba(20,20,20,0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        #cookie-banner.visible { transform: translateY(0); }
+        #cookie-banner p { font-size: 0.85rem; color: #bbb; max-width: 600px; }
+        #cookie-banner a { color: var(--accent); }
+        #cookie-banner .btn-accept {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.25s, box-shadow 0.25s;
+            white-space: nowrap;
+        }
+        #cookie-banner .btn-accept:hover { background: #f08040; box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* ============ REVEAL ANIMATIONS ============ */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .why-grid { grid-template-columns: 1fr; }
+            .before-after-grid { grid-template-columns: 1fr; }
+            header nav { display: none; }
+            section { padding: 56px 20px; }
+            .hero { padding: calc(var(--header-h) + 32px) 20px 56px; }
+        }
+
+        /* ============ REDUCED MOTION ============ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            #sun-system { display: none; }
+            .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SKIP LINK -->
+    <a href="#main" class="skip-link">Pular para conteúdo</a>
+
+    <!-- SUN SYSTEM -->
+    <div id="sun-system" aria-hidden="true">
+        <div id="sun-orb"></div>
+        <div id="sun-glow"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <a href="/" class="logo">SND<span>Limp</span></a>
+        <nav>
+            <a href="#prejuizo">Simulador</a>
+            <a href="#servico">Serviço</a>
+            <a href="#porque">Por quê</a>
+            <a href="https://edusidegum.github.io/sndlimp/economia.html" class="btn-header">Simular</a>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content reveal">
+                <h1>Você <em>instalou placas fotovoltaicas</em> para gerar energia <em>e economizar</em> certo?</h1>
+                <p>Poeira, fuligem e excrementos reduzem drasticamente a captação. A SNDLimp resolve isso.</p>
+                <div class="highlight-loss">
+                    💸 <strong>até R$50/mês</strong> — É o que <strong>cada placa</strong> pode deixar de gerar por acúmulo de sujeira. Faça as contas.
+                </div>
+                <br>
+                <a href="https://edusidegum.github.io/sndlimp/economia.html" class="btn-simulador-hero">
+                    Quero Simular se estou perdendo dinheiro
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- PREJUÍZO / SIMULADOR -->
+        <section id="prejuizo">
+            <div class="section-label reveal">Simulador</div>
+            <h2 class="reveal">O prejuízo <em>escondido</em> na sua laje</h2>
+            <p class="section-subtitle reveal">Veja quanto a sujeira está custando para o seu sistema fotovoltaico.</p>
+            <div class="economia-card reveal" style="position:relative;">
+                <div class="pulse-ring"></div>
+                <a href="https://edusidegum.github.io/sndlimp/economia.html" style="text-decoration:none;color:inherit;display:block;">
+                    <div class="card-img-wrap">
+                        <img src="https://raw.githubusercontent.com/edusidegum/sndlimp/refs/heads/main/img/rendimentoplacas.webp" alt="Gráfico de rendimento — impacto da sujeira nas placas solares" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Ir para o SIMULADOR →</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Simulador de Perda Financeira</h3>
+                        <p>Descubra em segundos quanto você está deixando de economizar com placas sujas.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- SERVIÇO -->
+        <section id="servico">
+            <div class="section-label reveal">Serviço</div>
+            <h2 class="reveal">A SNDLimp <em>entra aqui</em></h2>
+            <p class="section-subtitle reveal">Usamos equipamento profissional, produtos biodegradáveis e técnica que não risca, não mancha e não danifica o vidro antirreflexo dos seus módulos. Resultado: eficiência restaurada em até 98% logo após a limpeza.</p>
+            <div class="before-after-grid">
+                <div class="ba-card antes reveal-left">
+                    <div class="ba-img-wrap">
+                        <img src="https://raw.githubusercontent.com/edusidegum/sndlimp/refs/heads/main/img/servico1.webp" alt="Placas solares antes da limpeza — sujas" loading="lazy">
+                    </div>
+                    <div class="ba-label">🔴 ANTES — Placas com acúmulo de sujeira</div>
+                </div>
+                <div class="ba-card depois reveal-right">
+                    <div class="ba-img-wrap">
+                        <img src="https://raw.githubusercontent.com/edusidegum/sndlimp/refs/heads/main/img/servico5.webp" alt="Placas solares depois da limpeza — limpas" loading="lazy">
+                    </div>
+                    <div class="ba-label">🟢 DEPOIS — Eficiência restaurada</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POR QUE -->
+        <section id="porque">
+            <div class="section-label reveal">Diferenciais</div>
+            <h2 class="reveal">Por que a <em>SNDLimp</em>?</h2>
+            <p class="section-subtitle reveal">Limpeza feita por quem entende de geração.</p>
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <span class="why-icon">🧼</span>
+                    <h3>Sem abrasivos</h3>
+                    <p>Nada de esponjas ásperas ou produtos caseiros. Cuidamos do seu investimento.</p>
+                </div>
+                <div class="why-card reveal" style="transition-delay: 0.1s;">
+                    <span class="why-icon">📊</span>
+                    <h3>Relatório fotográfico</h3>
+                    <p>Antes e depois para você ter certeza do serviço.</p>
+                </div>
+                <div class="why-card reveal" style="transition-delay: 0.2s;">
+                    <span class="why-icon">⏱️</span>
+                    <h3>Rápido e sem bagunça</h3>
+                    <p>Em poucas horas seu sistema volta a produzir no máximo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <div class="cta-section reveal">
+            <div class="cta-inner">
+                <h2>Não deixe a sujeira <em>comer</em> seu lucro</h2>
+                <p>Simule agora e descubra quanto você pode recuperar com a limpeza profissional das suas placas.</p>
+                <a href="https://edusidegum.github.io/sndlimp/economia.html" class="btn-simulador">
+                    Quero Simular se estou perdendo dinheiro
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>SNDLimp — Limpeza Especializada em Placas Solares &copy; 2026</p>
+        <p style="margin-top:8px;">Novo Hamburgo · São Leopoldo · Vale do Sinos · Vale do Taquari / RS</p>
+        <p style="margin-top:8px;">
+            <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a>
+        </p>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <p>Usamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="#">Política de Privacidade</a>.</p>
+        <button class="btn-accept" id="btn-accept-cookies">Aceitar</button>
+    </div>
+
+    <script>
+        /* ============ SUN ARC SYSTEM ============ */
+        const sunOrb = document.getElementById('sun-orb');
+        const sunGlow = document.getElementById('sun-glow');
+
+        function updateSun() {
+            const scrollY = window.scrollY;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docH > 0 ? Math.min(scrollY / docH, 1) : 0;
+
+            const xPct = 5 + progress * 90;
+            const yPct = progress < 0.5
+                ? 80 - (progress / 0.5) * 70
+                : 10 + ((progress - 0.5) / 0.5) * 70;
+            const x = (xPct / 100) * window.innerWidth;
+            const y = (yPct / 100) * window.innerHeight;
+
+            if (sunOrb) { sunOrb.style.left = x + 'px'; sunOrb.style.top = y + 'px'; }
+            if (sunGlow) { sunGlow.style.left = x + 'px'; sunGlow.style.top = y + 'px'; }
+        }
+
+        window.addEventListener('scroll', updateSun, { passive: true });
+        window.addEventListener('resize', updateSun);
+        updateSun();
+
+        /* ============ HEADER SCROLL ============ */
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+
+        /* ============ REVEAL ============ */
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+
+        /* ============ COOKIE BANNER ============ */
+        const cookieBanner = document.getElementById('cookie-banner');
+        const btnAccept = document.getElementById('btn-accept-cookies');
+        if (!localStorage.getItem('cookies-accepted')) {
+            setTimeout(() => cookieBanner.classList.add('visible'), 600);
+        }
+        btnAccept.addEventListener('click', () => {
+            localStorage.setItem('cookies-accepted', '1');
+            cookieBanner.classList.remove('visible');
+        });
+    </script>
+
+    <script src="bloco-incluir.js"></script>
+</body>
+</html>
