@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDLimp — Limpeza Especializada em Placas Solares</title>
+    <meta name="description" content="SNDLimp — Limpeza especializada em placas solares. Atendemos Novo Hamburgo, São Leopoldo, Vale do Sinos e Vale do Taquari/RS. Recupere até 25% de eficiência dos seus painéis com limpeza técnica profissional.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://edusidegum.github.io/sndlimp/">
+    <meta property="og:title" content="SNDLimp — Limpeza Especializada em Placas Solares">
+    <meta property="og:description" content="Recupere até 25% de eficiência dos seus painéis com limpeza técnica profissional.">
+    <meta property="og:image" content="https://edusidegum.github.io/sndlimp/img/rendimentoplacas.webp">
+    <meta property="og:url" content="https://edusidegum.github.io/sndlimp/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SNDLimp — Limpeza Especializada em Placas Solares">
+    <meta name="twitter:description" content="Recupere até 25% de eficiência dos seus painéis com limpeza técnica profissional.">
+    <meta name="twitter:image" content="https://edusidegum.github.io/sndlimp/img/rendimentoplacas.webp">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23E8752A'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FFD700'/%3E%3C/svg%3E">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "SNDLimp",
+      "description": "Limpeza especializada em placas solares — Vale do Sinos e Vale do Taquari/RS",
+      "areaServed": ["Novo Hamburgo","São Leopoldo","Campo Bom","Sapiranga","Estância Velha","Portão","Lajeado","Estrela","Teutônia","Encantado","Arroio do Meio","Taquari","Poço das Antas"],
+      "url": "https://edusidegum.github.io/sndlimp/",
+      "telephone": "+555196033200"
+    }
+    </script>
+    <style>
+        /* ============================================
+           SNDLimp — CSS Modernizado (inline)
+           Fundo preto + Sol em arco + Botão Simulador
+           ============================================ */
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-hover: #1e1e1e;
+            --border: rgba(255,255,255,0.08);
+            --text: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --accent: #E8752A;
+            --accent-glow: rgba(232,117,42,0.5);
+            --accent-2: #FFB347;
+            --green: #2ecc71;
+            --red: #e74c3c;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Georgia', 'Times New Roman', serif;
+            --font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Skip link */
+        .skip-link {
+            position: fixed; top: -100%; left: 16px; z-index: 9999;
+            background: var(--accent); color: #fff; padding: 8px 16px;
+            border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* ========== SOL SYSTEM ========== */
+        #sun-system {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #sun-orb {
+            position: absolute;
+            width: 280px; height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%,
+                rgba(255,215,0,0.95) 0%,
+                rgba(255,180,50,0.8) 15%,
+                rgba(255,140,0,0.5) 35%,
+                rgba(232,117,42,0.2) 60%,
+                transparent 100%
+            );
+            transform: translate(-50%, -50%);
+            will-change: left, top;
+            filter: blur(0px);
+        }
+
+        #sun-glow {
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%,
+                rgba(232,117,42,0.18) 0%,
+                rgba(232,117,42,0.08) 30%,
+                rgba(232,117,42,0.02) 60%,
+                transparent 100%
+            );
+            transform: translate(-50%, -50%);
+            will-change: left, top;
+        }
+
+        /* Stars / particles */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 85% 50%, rgba(255,255,255,0.35), transparent),
+                radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 60% 75%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 90% 85%, rgba(255,255,255,0.35), transparent),
+                radial-gradient(1px 1px at 35% 90%, rgba(255,255,255,0.3), transparent);
+        }
+
+        /* ========== HEADER ========== */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 12px 0;
+            transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+        }
+        .site-header.scrolled {
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+        .header-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem; font-weight: 700; color: #fff;
+            text-decoration: none; letter-spacing: -0.02em;
+            position: relative; z-index: 1;
+        }
+        .logo span { color: var(--accent); }
+        .header-cta {
+            background: #25D366; color: #fff; padding: 8px 18px;
+            border-radius: 50px; font-size: 0.875rem; font-weight: 600;
+            text-decoration: none; transition: var(--transition);
+            position: relative; z-index: 1;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .header-cta:hover { background: #1fa855; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+        .header-cta svg { width: 16px; height: 16px; }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content { position: relative; z-index: 1; }
+
+        section {
+            position: relative; z-index: 1;
+            max-width: 1100px; margin: 0 auto; padding: 80px 24px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding-top: 140px; padding-bottom: 60px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700; line-height: 1.15;
+            color: #fff; max-width: 800px; margin: 0 auto 20px;
+            letter-spacing: -0.03em;
+        }
+        .hero h1 em {
+            font-style: italic; color: var(--accent-2);
+            position: relative;
+        }
+        .hero h1 em::after {
+            content: '';
+            position: absolute; bottom: 2px; left: 0; right: 0;
+            height: 3px; background: var(--accent); opacity: 0.5;
+            border-radius: 2px;
+        }
+        .hero .hero-sub {
+            font-size: 1.1rem; color: var(--text-muted);
+            max-width: 600px; margin: 0 auto 32px;
+        }
+        .hero .loss-badge {
+            display: inline-block;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 28px; margin-bottom: 32px;
+        }
+        .loss-badge .amount {
+            font-size: 2rem; font-weight: 700; color: var(--accent);
+            display: block; line-height: 1;
+        }
+        .loss-badge .per {
+            font-size: 0.9rem; color: var(--text-muted);
+        }
+        .hero .cta-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #25D366; color: #fff;
+            padding: 14px 32px; border-radius: 50px;
+            font-size: 1rem; font-weight: 600; text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+        }
+        .hero .cta-primary:hover {
+            background: #1fa855; transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+        }
+
+        /* ========== SIMULATOR CARD (destacado) ========== */
+        .simulator-section {
+            padding-top: 20px; padding-bottom: 80px;
+        }
+        .simulator-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+        .simulator-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(232,117,42,0.15), 0 8px 32px rgba(0,0,0,0.4);
+            transform: translateY(-4px);
+        }
+        .simulator-card .card-image {
+            position: relative; overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+        }
+        .simulator-card .card-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .simulator-card:hover .card-image img {
+            transform: scale(1.06);
+        }
+        .simulator-card .card-image .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            display: flex; align-items: flex-end; padding: 24px;
+        }
+        .simulator-card .section-label {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--accent);
+            margin-bottom: 8px; font-weight: 600;
+        }
+        .simulator-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem; color: #fff;
+            margin-bottom: 4px;
+        }
+        .simulator-card .card-body {
+            padding: 24px;
+        }
+        .simulator-card .card-body p {
+            color: var(--text-muted); margin-bottom: 20px;
+        }
+        /* Botão SIMULADOR destacado */
+        .btn-simulador {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 16px 32px; border-radius: 50px;
+            font-size: 1.05rem; font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 30px rgba(232,117,42,0.4), 0 4px 16px rgba(232,117,42,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-simulador::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+            border-radius: 50px;
+        }
+        .btn-simulador:hover {
+            background: #f08035;
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(232,117,42,0.55), 0 8px 24px rgba(232,117,42,0.3);
+        }
+        .btn-simulador:active { transform: translateY(-1px); }
+        .btn-simulador .arrow {
+            display: inline-block; transition: transform 0.3s;
+            font-size: 1.2rem;
+        }
+        .btn-simulador:hover .arrow {
+            transform: translateX(4px);
+        }
+        /* Pulse ring */
+        .simulator-card .pulse-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            transform: translate(-50%, -50%);
+            animation: pulseRing 2.5s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0% { width: 60px; height: 60px; opacity: 0.6; }
+            100% { width: 300px; height: 300px; opacity: 0; }
+        }
+
+        /* ========== BEFORE/AFTER ========== */
+        .before-after-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        }
+        .ba-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        .ba-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+        .ba-card.before:hover { border-color: var(--red); }
+        .ba-card.after:hover { border-color: var(--green); }
+        .ba-card .ba-image {
+            aspect-ratio: 4/3; overflow: hidden;
+        }
+        .ba-card .ba-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .ba-card:hover .ba-image img { transform: scale(1.05); }
+        .ba-card .ba-label {
+            padding: 16px 20px; font-weight: 700; font-size: 0.9rem;
+            letter-spacing: 0.04em;
+        }
+        .ba-card.before .ba-label { color: var(--red); border-top: 3px solid var(--red); }
+        .ba-card.after .ba-label { color: var(--green); border-top: 3px solid var(--green); }
+
+        .ba-note {
+            margin-top: 24px; padding: 20px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .ba-note strong { color: var(--text); }
+        .ba-note .highlight-result {
+            display: block; margin-top: 10px;
+            color: var(--green); font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ========== WHY SECTION ========== */
+        .why-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+        .why-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative; overflow: hidden;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .why-card:hover::before { transform: scaleX(1); }
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .why-card .icon {
+            font-size: 2.5rem; margin-bottom: 16px; display: block;
+        }
+        .why-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem; color: #fff; margin-bottom: 8px;
+        }
+        .why-card p {
+            font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;
+        }
+
+        /* ========== SECTION HEADINGS ========== */
+        .section-kicker {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent);
+            margin-bottom: 8px; font-weight: 600;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            color: #fff; margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+        .section-title em {
+            font-style: italic; color: var(--accent-2);
+        }
+
+        /* ========== FOOTER ========== */
+        .site-footer {
+            position: relative; z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .site-footer a {
+            color: var(--accent); text-decoration: none;
+        }
+        .site-footer a:hover { text-decoration: underline; }
+
+        /* ========== COOKIE BANNER ========== */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 5000;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; flex-wrap: wrap;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.85rem; color: var(--text-muted);
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner a { color: var(--accent); }
+        .cookie-banner button {
+            background: var(--accent); color: #fff; border: none;
+            padding: 8px 20px; border-radius: 50px;
+            font-weight: 600; cursor: pointer;
+            transition: var(--transition);
+        }
+        .cookie-banner button:hover { background: #f08035; }
+
+        /* ========== REVEAL ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left {
+            opacity: 0; transform: translateX(-30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0; transform: translateX(30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ========== ACCESSIBILITY ========== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            #sun-orb, #sun-glow { display: none; }
+            .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+        }
+        :focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .before-after-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            section { padding: 48px 16px; }
+            .hero { padding-top: 110px; }
+            .hero h1 { font-size: 1.7rem; }
+            .btn-simulador { padding: 14px 24px; font-size: 0.95rem; }
+            .header-inner { padding: 0 16px; }
+            .header-cta span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- SOL SYSTEM -->
+    <div id="sun-system" aria-hidden="true">
+        <div id="sun-glow"></div>
+        <div id="sun-orb"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="/sndlimp/" class="logo">SND<span>Limp</span></a>
+            <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20recuperar%20a%20efici%C3%AAncia%20das%20minhas%20placas." class="header-cta" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content" id="main-content">
+
+        <!-- HERO -->
+        <section class="hero reveal">
+            <h1>Você <em>instalou placas fotovoltaicas</em> para gerar energia <em>e economizar</em> certo?</h1>
+            <p class="hero-sub">Poeira, fuligem e excrementos reduzem drasticamente a captação. A SNDLimp resolve isso.</p>
+            <div class="loss-badge">
+                <span class="amount">até R$50/mês</span>
+                <span class="per">É o que <strong>cada placa</strong> pode deixar de gerar por acúmulo de sujeira. Faça as contas.</span>
+            </div>
+            <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20recuperar%20a%20efici%C3%AAncia%20das%20minhas%20placas." class="cta-primary" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Quero Parar de Perder Dinheiro
+            </a>
+        </section>
+
+        <!-- SIMULATOR (destacado) -->
+        <section class="simulator-section reveal">
+            <div class="simulator-card">
+                <a href="https://edusidegum.github.io/sndlimp/economia.html" style="text-decoration:none;color:inherit;display:block;">
+                    <div class="card-image">
+                        <img src="https://edusidegum.github.io/sndlimp/img/rendimentoplacas.webp" alt="Gráfico de rendimento — impacto da sujeira nas placas solares" loading="lazy">
+                        <div class="overlay">
+                            <div>
+                                <div class="section-label">📊 Ferramenta Interativa</div>
+                                <h2>O prejuízo escondido na sua laje</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Simule o quanto a sujeira está drenando do seu investimento. Gráfico interativo com dados reais de rendimento.</p>
+                        <span class="btn-simulador">
+                            Ir para o SIMULADOR
+                            <span class="arrow">→</span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- BEFORE / AFTER -->
+        <section>
+            <div class="section-kicker reveal">✅ Resultado visível</div>
+            <h2 class="section-title reveal">A <em>SNDLimp</em> entra aqui</h2>
+            <div class="before-after-grid">
+                <div class="ba-card before reveal-left">
+                    <div class="ba-image">
+                        <img src="https://edusidegum.github.io/sndlimp/img/servico1.webp" alt="Placas solares antes da limpeza — sujas" loading="lazy">
+                    </div>
+                    <div class="ba-label">🔴 ANTES — Placas com acúmulo de sujeira</div>
+                </div>
+                <div class="ba-card after reveal-right">
+                    <div class="ba-image">
+                        <img src="https://edusidegum.github.io/sndlimp/img/servico5.webp" alt="Placas solares depois da limpeza — limpas" loading="lazy">
+                    </div>
+                    <div class="ba-label">🟢 DEPOIS — Eficiência restaurada</div>
+                </div>
+            </div>
+            <div class="ba-note reveal">
+                <p>Usamos equipamento profissional, produtos biodegradáveis e técnica que <strong>não risca, não mancha e não danifica</strong> o vidro antirreflexo dos seus módulos. Limpeza feita por quem entende de geração.</p>
+                <span class="highlight-result">Resultado: eficiência restaurada em até 98% logo após a limpeza.</span>
+            </div>
+        </section>
+
+        <!-- WHY SNDLimp -->
+        <section>
+            <div class="section-kicker reveal">🧼 Diferencial técnico</div>
+            <h2 class="section-title reveal">Por que a <em>SNDLimp</em>?</h2>
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <span class="icon">🧼</span>
+                    <h3>Sem abrasivos</h3>
+                    <p>Nada de esponjas ásperas ou produtos caseiros. Cuidamos do seu investimento.</p>
+                </div>
+                <div class="why-card reveal">
+                    <span class="icon">📊</span>
+                    <h3>Relatório fotográfico</h3>
+                    <p>Antes e depois para você ter certeza do serviço.</p>
+                </div>
+                <div class="why-card reveal">
+                    <span class="icon">⏱️</span>
+                    <h3>Rápido e sem bagunça</h3>
+                    <p>Em poucas horas seu sistema volta a produzir no máximo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section style="text-align:center;" class="reveal">
+            <a href="https://wa.me/555196033200?text=Ol%C3%A1!%20Quero%20agendar%20uma%20limpeza%20das%20minhas%20placas." class="btn-simulador" target="_blank" rel="noopener noreferrer" style="background:#25D366; box-shadow: 0 0 30px rgba(37,211,102,0.4), 0 4px 16px rgba(37,211,102,0.2);">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Agendar Limpeza Agora
+                <span class="arrow">→</span>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>© 2026 SNDLimp — Limpeza Especializada em Placas Solares. Todos os direitos reservados.</p>
+        <p><a href="https://edusidegum.github.io/menu/compartilhado/politicadeprivacidade.html">Política de Privacidade</a></p>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner" id="cookie-banner">
+        <span>🍪 Este site usa cookies para melhorar sua experiência e analisar o tráfego. Ao continuar navegando, você concorda com nossa <a href="https://edusidegum.github.io/menu/compartilhado/politicadeprivacidade.html">Política de Privacidade</a>.</span>
+        <button id="accept-cookies">Aceitar</button>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        /* ============================================
+           SNDLimp — JS inline
+           Sol em arco + Header glass + Reveal + Cookies
+           ============================================ */
+
+        (function() {
+            'use strict';
+
+            // --- DOM refs ---
+            const sunOrb = document.getElementById('sun-orb');
+            const sunGlow = document.getElementById('sun-glow');
+            const header = document.getElementById('site-header');
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+
+            // --- SOL ARC ---
+            function updateSun() {
+                if (!sunOrb || !sunGlow) return;
+
+                const scrollY = window.scrollY;
+                const docH = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docH > 0 ? Math.min(scrollY / docH, 1) : 0;
+
+                // Arc trajectory: x from 5% to 95% linearly
+                const xPercent = 5 + (progress * 90);
+
+                // Parabolic arc: y goes from 80% (bottom) up to 10% (zenith) then back to 80%
+                // peak at progress=0.5, y=10%; edges at y=80%
+                const t = progress * 2 - 1; // -1 to 1
+                const yPercent = 10 + (70 * (t * t)); // 10% at t=0, 80% at t=±1
+
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+
+                const orbX = (xPercent / 100) * vw;
+                const orbY = (yPercent / 100) * vh;
+
+                sunOrb.style.left = orbX + 'px';
+                sunOrb.style.top = orbY + 'px';
+                sunGlow.style.left = orbX + 'px';
+                sunGlow.style.top = orbY + 'px';
+            }
+
+            function onScroll() {
+                // Header glass
+                if (header) {
+                    header.classList.toggle('scrolled', window.scrollY > 40);
+                }
+                // Sun
+                updateSun();
+            }
+
+            // --- REVEAL ON SCROLL ---
+            const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+
+            const revealObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+            // --- COOKIE BANNER ---
+            if (cookieBanner && acceptBtn) {
+                if (!localStorage.getItem('sndlimp-cookies-accepted')) {
+                    setTimeout(function() { cookieBanner.classList.add('show'); }, 800);
+                }
+                acceptBtn.addEventListener('click', function() {
+                    localStorage.setItem('sndlimp-cookies-accepted', '1');
+                    cookieBanner.classList.remove('show');
+                });
+            }
+
+            // --- INIT ---
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', updateSun, { passive: true });
+            updateSun();
+            onScroll(); // set initial header state
+
+        })();
+    </script>
+
+    <!-- Bloco include original (GA4, cookies etc) — PRESERVADO -->
+    <script src="bloco-incluir.js"></script>
+</body>
+</html>
