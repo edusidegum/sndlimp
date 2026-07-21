@@ -1,0 +1,27 @@
+name: Gerar Sitemap
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar sitemap.xml
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://edusidegum.github.io/sndlimp/
+          include-pdf: false
+          include-html: true
+          reverse: false
+
+      - name: Commitar sitemap.xml
+        run: |
+          git config user.name "Sitemap Bot"
+          git config user.email "bot@sndlimp.com"
+          git add sitemap.xml
+          git diff --staged --quiet || git commit -m "🤖 Atualiza sitemap.xml"
+          git push
