@@ -236,4 +236,66 @@
       <div class="meta">22 jul 2026 • 6 min</div>
     </a>
 
-    <a href="posts/inmet-1991-2020-precipitacao-brasil-soiling.html"
+    <a href="posts/inmet-1991-2020-precipitacao-brasil-soiling.html" class="post-card">
+      <div class="cat">Dados Meteorológicos Aplicados</div>
+      <h2>INMET 1991-2020: Precipitação no Brasil e sua Relação com Perdas por Soiling</h2>
+      <p>Análise dos dados de precipitação acumulada mensal do INMET por UF. Base para calibração do fator de ajuste de 44% sobre a taxa Kimber no método IEEE3S.</p>
+      <div class="meta">22 jul 2026 • 7 min</div>
+    </a>
+
+    <a href="posts/cbens-2018-gramado-10-porcento-limpeza.html" class="post-card">
+      <div class="cat">Validação Científica — Brasil</div>
+      <h2>CBENS 2018: Ganho de 10,26% na Geração Após Limpeza de Painéis Solares — Gramado/RS</h2>
+      <p>Experimento do UNIPAM apresentado no VII Congresso Brasileiro de Energia Solar. Valida o fator de 0,40 aplicado no método IEEE3S para conversão de índice de sujidade em perda real.</p>
+      <div class="meta">22 jul 2026 • 6 min</div>
+    </a>
+
+    <a href="posts/ufla-2024-sistema-automatizado-limpeza-solar.html" class="post-card">
+      <div class="cat">Inovação e Tecnologia</div>
+      <h2>UFLA 2024: Protótipo Funcional de Sistema Automatizado para Limpeza de Placas Solares</h2>
+      <p>TCC de Sarah Nunes Batista Marques. ESP32 + motor NEMA17 + bomba 4L/min. Consumo de 2,33 litros de água por ciclo de limpeza. Controle remoto via aplicativo Blynk.</p>
+      <div class="meta">22 jul 2026 • 7 min</div>
+    </a>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="text-align:center;max-width:1100px;margin:0 auto;">
+      <h3>☀ SNDLimp</h3>
+      <p><strong>Limpeza Especializada em Placas Solares</strong></p>
+      <p>📞 Samuel Sidegum: (51) 99603-3200</p>
+      <p>📞 Eduardo Sidegum: (51) 99966-3200</p>
+      <p>📍 Atendimento Vale do Sinos e Vale do Taquari</p>
+      <p class="copyright">© 2026 SNDLimp. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var toggle=document.getElementById('menuToggle'),lista=document.getElementById('menuLista');
+      if(toggle&&lista){
+        if(window.innerWidth<=640){toggle.style.display='block';lista.style.display='none';}
+        toggle.addEventListener('click',function(e){e.stopPropagation();lista.style.display=lista.style.display==='block'?'none':'block';});
+        document.addEventListener('click',function(e){if(!toggle.contains(e.target)&&!lista.contains(e.target))lista.style.display='none';});
+        window.addEventListener('resize',function(){if(window.innerWidth>640){lista.style.display='flex';toggle.style.display='none';}else{toggle.style.display='block';if(!lista.classList.contains('show'))lista.style.display='none';}});
+      }
+    });
+  </script>
+<script src="https://edusidegum.github.io/menu/scripts/bloco-incluir.js" defer></script>
+<script>
+function openLightbox(src) {
+document.getElementById('lightbox-img').src = src;
+document.getElementById('lightbox').style.display = 'flex';
+document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+document.getElementById('lightbox').style.display = 'none';
+document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+  </body>
+</html>
