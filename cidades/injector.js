@@ -1,242 +1,191 @@
 /**
- * SNDLimp — Injector de Conteúdo Variável por Cidade
+ * SNDLimp — Injector de Conteúdo Dinâmico por Cidade
  * 
- * Lê o bloco <script id="cidade-data"> e substitui dinamicamente:
- *  - Placeholders {{...}} no HTML
- *  - Conteúdo variável por content_seed (0, 1, 2)
- *  - Fontes e cores por região
- *  - WhatsApp links customizados
- * 
- * TopBar e Footer são preservados como identidade fixa.
+ * Lê os dados da cidade do <script id="cidade-data"> (injetado pelo build script)
+ * e aplica 3 variantes de conteúdo (seed 0, 1, 2) para ~40% de diferença entre cidades.
+ * TopBar, Footer e estrutura visual são mantidos como identidade da marca.
  */
 
 (function () {
   'use strict';
 
   // ── 1. Ler dados da cidade ──────────────────────────────────
-  const dataEl = document.getElementById('cidade-data');
-  if (!dataEl) return console.warn('[SNDLimp] cidade-data não encontrado');
+  var dataScript = document.getElementById('cidade-data');
+  if (!dataScript) { console.warn('[SNDLimp] cidade-data não encontrado.'); return; }
 
-  let cidade;
-  try {
-    cidade = JSON.parse(dataEl.textContent);
-  } catch (e) {
-    return console.error('[SNDLimp] Erro ao parsear cidade-data:', e);
-  }
+  var cidade;
+  try { cidade = JSON.parse(dataScript.textContent); }
+  catch (e) { console.error('[SNDLimp] Erro ao parsear cidade-data:', e); return; }
 
-  const seed = cidade.content_seed % 3; // 0, 1 ou 2
+  var nome   = cidade.nome   || 'sua cidade';
+  var slug   = cidade.slug   || '';
+  var regiao = cidade.regiao || 'Vale do Sinos';
+  var seed   = (typeof cidade.content_seed === 'number') ? cidade.content_seed : 0;
+  var whatsapp = cidade.whatsapp || '555196033200';
 
-  // ── 2. Banco de conteúdo variável (3 seeds por seção) ──────
-  const conteudo = {
+  // ── 2. Banco de conteúdo por seed ───────────────────────────
 
-    // ── HERO ──────────────────────────────────────────────────
-    hero: [
-      { // seed 0 — Original
-        titulo: 'Você instalou placas fotovoltaicas para gerar energia e economizar, certo?',
-        subtitulo: 'Poeira, fuligem e excrementos reduzem drasticamente a captação. A SNDLimp resolve isso em <strong>{{NOME}}</strong> e região.',
-        preco: '💸 até R$50/mês — É o que cada placa pode deixar de gerar por acúmulo de sujeira. Faça as contas.',
-        cta: '💬 Quero Parar de Perder Dinheiro'
-      },
-      { // seed 1 — Foco no rendimento
-        titulo: 'Seus painéis solares estão gerando menos energia do que deveriam?',
-        subtitulo: 'A sujeira invisível está sabotando seu investimento. A SNDLimp atende <strong>{{NOME}}</strong> com limpeza profissional que restaura o rendimento.',
-        preco: '⚡ Até 25% de perda — A cada 4 placas, 1 pode estar gerando quase nada por causa da sujeira acumulada.',
-        cta: '💬 Quero Recuperar Meu Rendimento'
-      },
-      { // seed 2 — Foco no investimento
-        titulo: 'Investiu em energia solar mas a conta de luz não caiu como esperado?',
-        subtitulo: 'Placa suja não gera energia. Placa limpa é economia real. A SNDLimp cuida do seu sistema em <strong>{{NOME}}</strong>.',
-        preco: '📉 Retorno comprometido — A sujeira pode estar atrasando o payback do seu sistema em meses ou até anos.',
-        cta: '💬 Quero Maximizar Meu Investimento'
-      }
+  var hero = {
+    heading: [
+      'Você <em>instalou placas fotovoltaicas</em> para gerar energia <em>e economizar</em>, certo?',
+      'Seus <em>painéis solares</em> estão rendendo <em>menos do que deveriam</em>?',
+      'Investiu em <em>energia solar</em> mas a conta de luz <em>não caiu como esperava</em>?'
     ],
-
-    // ── PREJUÍZO ──────────────────────────────────────────────
-    prejuizo: [
-      { // seed 0
-        titulo: '📉 O prejuízo escondido na sua laje em {{NOME}}',
-        texto: 'A sujeira acumulada nos painéis solares forma uma camada que bloqueia a luz solar. Em regiões como {{NOME}}, com períodos de estiagem e poeira rural, o impacto pode ser ainda maior. Cada dia sem limpeza é dinheiro que deixa de entrar no seu bolso.'
-      },
-      { // seed 1
-        titulo: '📉 Quanto a sujeira está custando para você em {{NOME}}?',
-        texto: 'Fuligem, poeira da colheita e dejetos de pássaros criam uma barreira opaca sobre as células fotovoltaicas. Em {{NOME}}, o acúmulo é acelerado pela combinação de períodos secos e atividade agrícola no entorno. O resultado: menos energia, mais conta de luz.'
-      },
-      { // seed 2
-        titulo: '📉 O ladrão silencioso de energia em {{NOME}}',
-        texto: 'Você olha para o telhado e as placas parecem limpas. Mas uma fina camada de micropartículas já reduz a captação solar. Em {{NOME}}, o clima da região acelera esse processo. A perda é silenciosa — mas aparece na fatura de energia.'
-      }
+    sub: [
+      'Poeira, fuligem e excrementos reduzem drasticamente a captação. A SNDLimp resolve isso em <strong>' + nome + '</strong> e região.',
+      'O acúmulo de sujeira nos módulos pode estar custando caro. A SNDLimp atende <strong>' + nome + '</strong> com limpeza técnica profissional.',
+      'Micropartículas invisíveis bloqueiam a radiação solar nos seus painéis. A SNDLimp recupera a eficiência do seu sistema em <strong>' + nome + '</strong>.'
     ],
-
-    // ── SOLUÇÃO ───────────────────────────────────────────────
-    solucao: [
-      { // seed 0 — Foco Antes/Depois
-        titulo: '✅ A SNDLimp resolve em {{NOME}}',
-        texto: 'Usamos equipamento profissional, produtos biodegradáveis e técnica que não risca, não mancha e não danifica o vidro antirreflexo dos seus módulos. Limpeza feita por quem entende de geração. Atendemos <strong>{{NOME}}</strong> e todo o <strong>{{REGIAO}}</strong>.',
-        resultado: 'Resultado: eficiência restaurada em até 98% logo após a limpeza.',
-        cta: '📅 Agendar Limpeza em {{NOME}}'
-      },
-      { // seed 1 — Foco processo técnico
-        titulo: '✅ Limpeza profissional que faz diferença em {{NOME}}',
-        texto: 'Nossa equipe utiliza água deionizada — que não deixa manchas nem resíduos minerais — e escovas com cerdas de nylon especial. O processo completo inclui inspeção visual, limpeza com jato controlado e secagem natural. Tudo documentado para você acompanhar.',
-        resultado: 'Resultado: seus painéis voltam a produzir como no primeiro dia de instalação.',
-        cta: '📅 Solicitar Orçamento em {{NOME}}'
-      },
-      { // seed 2 — Foco equipamento
-        titulo: '✅ Tecnologia e cuidado: a diferença SNDLimp em {{NOME}}',
-        texto: 'Trabalhamos com sistema de purificação de água por osmose reversa, escovas rotativas de baixa pressão e produtos 100% biodegradáveis. Cada módulo recebe atenção individual. Atendemos residências, comércios e usinas em <strong>{{NOME}}</strong> e <strong>{{REGIAO}}</strong>.',
-        resultado: 'Resultado: garantia de limpeza sem riscos, sem manchas e sem perda de garantia do fabricante.',
-        cta: '📅 Falar com Especialista em {{NOME}}'
-      }
+    destaqueValor: ['💸 até R$50/mês', '⚠️ até 25% de perda', '📉 retorno comprometido'],
+    destaqueLabel: [
+      'É o que <strong>cada placa</strong> pode deixar de gerar por acúmulo de sujeira. Faça as contas.',
+      'É a <strong>eficiência que você perde</strong> com painéis sujos. O investimento se paga mais rápido com limpeza regular.',
+      'Seu <strong>payback pode dobrar</strong> sem a manutenção adequada. Não deixe seu dinheiro escapar pelo telhado.'
     ],
+    cta: ['💬 Quero Parar de Perder Dinheiro', '💬 Recuperar Meu Rendimento', '💬 Maximizar Meu Investimento']
+  };
 
-    // ── BENEFÍCIOS ────────────────────────────────────────────
-    beneficios: [
-      { // seed 0 — Original
-        titulo: 'Por que a SNDLimp em {{NOME}}?',
-        cards: [
-          { icone: '🧼', titulo: 'Sem abrasivos', texto: 'Nada de esponjas ásperas ou produtos caseiros. Cuidamos do seu investimento em {{NOME}}.' },
-          { icone: '📊', titulo: 'Relatório fotográfico', texto: 'Antes e depois para você ter certeza do serviço realizado.' },
-          { icone: '⏱️', titulo: 'Rápido e sem bagunça', texto: 'Em poucas horas seu sistema volta a produzir no máximo.' }
-        ]
-      },
-      { // seed 1 — Foco ambiental + seguro
-        titulo: 'Diferenciais que fazem a SNDLimp única em {{NOME}}',
-        cards: [
-          { icone: '🌱', titulo: 'Produtos biodegradáveis', texto: 'Cuidamos do seu telhado e do meio ambiente. Nenhum resíduo químico agressivo.' },
-          { icone: '🛡️', titulo: 'Equipe segurada', texto: 'Profissionais com EPIs, treinamento em altura e seguro contra imprevistos.' },
-          { icone: '📋', titulo: 'Garantia de satisfação', texto: 'Se não ficar satisfeito com o resultado, voltamos sem custo adicional.' }
-        ]
-      },
-      { // seed 2 — Foco local + agilidade
-        titulo: 'Vantagens de escolher a SNDLimp em {{NOME}}',
-        cards: [
-          { icone: '📍', titulo: 'Técnicos da região', texto: 'Equipe baseada no {{REGIAO}}. Conhecemos o clima e as necessidades locais.' },
-          { icone: '📅', titulo: 'Agendamento flexível', texto: 'Horários que se adaptam à sua rotina, inclusive fins de semana.' },
-          { icone: '📈', titulo: 'Monitoramento pós-limpeza', texto: 'Acompanhamos a produção por 30 dias para garantir o resultado.' }
-        ]
-      }
+  var prejuizo = {
+    heading: [
+      '📉 O prejuízo escondido na sua laje em ' + nome,
+      '📉 Quanto a sujeira está custando para você em ' + nome,
+      '📉 O custo invisível dos painéis sujos em ' + nome
     ],
-
-    // ── FAQ ───────────────────────────────────────────────────
-    faq: [
-      { // seed 0
-        titulo: 'Dúvidas frequentes sobre limpeza solar em {{NOME}}',
-        perguntas: [
-          { p: 'Com que frequência devo limpar as placas em {{NOME}}?', r: 'Recomendamos limpeza a cada 3 a 6 meses, dependendo da exposição a poeira, fuligem e fezes de aves. Em {{NOME}} e {{REGIAO}}, a média ideal é a cada 4 meses.' },
-          { p: 'A limpeza pode danificar as placas solares?', r: 'Não. Usamos água deionizada, escovas com cerdas especiais e produtos biodegradáveis. Nossa técnica preserva o vidro antirreflexo e não risca os módulos.' },
-          { p: 'Vocês atendem {{NOME}} e cidades vizinhas?', r: 'Sim! Atendemos {{NOME}} e todas as cidades do {{REGIAO}}. Consulte nossa área de cobertura ou chame no WhatsApp para confirmar.' }
-        ]
-      },
-      { // seed 1
-        titulo: 'Perguntas que todo mundo faz sobre limpeza solar em {{NOME}}',
-        perguntas: [
-          { p: 'Chuva não limpa as placas naturalmente?', r: 'Não completamente. A chuva remove poeira leve, mas não elimina fuligem, resíduos orgânicos ou fezes de aves. Só a limpeza profissional garante a remoção total.' },
-          { p: 'Quanto tempo dura o serviço em {{NOME}}?', r: 'Uma residência típica leva de 1 a 2 horas. Não causamos interrupção no fornecimento de energia e não deixamos bagunça no local.' },
-          { p: 'Qual o valor do serviço em {{NOME}}?', r: 'O valor varia conforme a quantidade de placas e a altura do telhado. Entre em contato pelo WhatsApp para um orçamento personalizado e sem compromisso.' }
-        ]
-      },
-      { // seed 2
-        titulo: 'Tire suas dúvidas sobre limpeza de painéis em {{NOME}}',
-        perguntas: [
-          { p: 'Limpar as placas anula a garantia do fabricante?', r: 'Não. Pelo contrário — a maioria dos fabricantes exige manutenção periódica. Nossa técnica é compatível com todas as marcas do mercado.' },
-          { p: 'Como sei que minhas placas precisam de limpeza?', r: 'Se a produção caiu sem motivo aparente, ou se você vê acúmulo visível de sujeira, é hora de limpar. Oferecemos avaliação gratuita em {{NOME}}.' },
-          { p: 'Atendem empresas e usinas em {{NOME}}?', r: 'Sim! Atendemos desde residências até instalações comerciais e usinas de grande porte em {{NOME}} e {{REGIAO}}. Solicite uma vistoria técnica.' }
-        ]
-      }
-    ],
-
-    // ── CTA FINAL ─────────────────────────────────────────────
-    cta_final: [
-      {
-        titulo: 'Recupere a eficiência das suas placas solares em {{NOME}}',
-        texto: 'Atendimento profissional em {{NOME}} e {{REGIAO}}. Agende sua limpeza agora mesmo.',
-        botao: '💬 Falar com Especialista'
-      },
-      {
-        titulo: 'Pare de perder dinheiro com placa suja em {{NOME}}',
-        texto: 'Cada dia sem limpeza é energia que você deixa de gerar. Nossa equipe está pronta para atender {{NOME}} e {{REGIAO}}.',
-        botao: '💬 Solicitar Orçamento Grátis'
-      },
-      {
-        titulo: 'Seu sistema solar merece o melhor cuidado em {{NOME}}',
-        texto: 'Confie em quem entende de geração fotovoltaica. SNDLimp — limpeza profissional em {{NOME}} e {{REGIAO}}.',
-        botao: '💬 Agendar Visita Técnica'
-      }
+    texto: [
+      'A sujeira acumulada nos painéis solares forma uma camada que bloqueia a luz solar. Em regiões como ' + nome + ', com períodos de estiagem e poeira rural, o impacto pode ser ainda maior. Cada dia sem limpeza é dinheiro que deixa de entrar no seu bolso.',
+      'Fuligem, fezes de aves e poeira de colheita criam uma barreira opaca sobre os módulos fotovoltaicos. Em ' + nome + ', esse acúmulo reduz a geração silenciosamente — você só percebe quando a conta de luz sobe. A limpeza profissional reverte esse quadro.',
+      'Mesmo que você não veja, uma fina camada de micropartículas se deposita diariamente nos seus painéis. Em ' + nome + ', fatores como tráfego, agricultura e clima aceleram esse processo. O resultado: menos energia gerada, mais tempo para o retorno do investimento.'
     ]
   };
 
-  // ── 3. Função auxiliar: substituir placeholders ─────────────
-  function preencher(texto) {
-    return texto
-      .replace(/\{\{NOME\}\}/g, cidade.nome)
-      .replace(/\{\{REGIAO\}\}/g, cidade.regiao_nome)
-      .replace(/\{\{CIDADE_SLUG\}\}/g, cidade.slug)
-      .replace(/\{\{REGIAO_SLUG\}\}/g, cidade.regiao)
-      .replace(/\{\{WHATSAPP\}\}/g, cidade.whatsapp);
+  var solucao = {
+    heading: [
+      '✅ A SNDLimp resolve em ' + nome,
+      '✅ Como recuperamos a eficiência em ' + nome,
+      '✅ Limpeza profissional que faz diferença em ' + nome
+    ],
+    texto: [
+      'Usamos equipamento profissional, produtos biodegradáveis e técnica que <strong>não risca, não mancha e não danifica</strong> o vidro antirreflexo dos seus módulos. Limpeza feita por quem entende de geração. Atendemos <strong>' + nome + '</strong> e todo o <strong>' + regiao + '</strong>.',
+      'Nossa limpeza utiliza <strong>água deionizada e escovas com cerdas especiais</strong>, eliminando qualquer risco de abrasão. O processo é rápido, silencioso e não interfere na sua rotina. Cobertura completa em <strong>' + nome + '</strong> e <strong>' + regiao + '</strong>.',
+      'Com <strong>equipamento de osmose reversa e produtos 100% biodegradáveis</strong>, entregamos uma limpeza que preserva a camada antirreflexo dos seus módulos. Técnicos treinados atendem <strong>' + nome + '</strong> e todo o <strong>' + regiao + '</strong>.'
+    ],
+    cta: ['📅 Agendar Limpeza em ' + nome, '📅 Solicitar Orçamento em ' + nome, '📅 Falar com um Técnico em ' + nome]
+  };
+
+  var beneficios = {
+    heading: [
+      'Por que a <em>SNDLimp</em> em ' + nome + '?',
+      'O que torna a <em>SNDLimp</em> diferente em ' + nome + '?',
+      'Vantagens da <em>SNDLimp</em> para ' + nome
+    ],
+    cards: [
+      [
+        { icon: '🧼', title: 'Sem abrasivos', text: 'Nada de esponjas ásperas ou produtos caseiros. Cuidamos do seu investimento em ' + nome + '.' },
+        { icon: '📊', title: 'Relatório fotográfico', text: 'Antes e depois para você ter certeza do serviço realizado.' },
+        { icon: '⏱️', title: 'Rápido e sem bagunça', text: 'Em poucas horas seu sistema volta a produzir no máximo.' }
+      ],
+      [
+        { icon: '🌱', title: 'Produtos biodegradáveis', text: 'Química segura para seu telhado e para o meio ambiente em ' + nome + '.' },
+        { icon: '🛡️', title: 'Equipe segurada', text: 'Profissionais com EPIs e seguro contra imprevistos durante o serviço.' },
+        { icon: '📋', title: 'Garantia de satisfação', text: 'Se não ficar satisfeito, voltamos sem custo adicional.' }
+      ],
+      [
+        { icon: '📍', title: 'Técnicos locais', text: 'Equipe baseada em ' + nome + ' e ' + regiao + '. Chegada rápida e conhecimento da região.' },
+        { icon: '📅', title: 'Agendamento flexível', text: 'Horário comercial, fins de semana e feriados. Adaptamos à sua rotina.' },
+        { icon: '📈', title: 'Monitoramento pós-limpeza', text: 'Acompanhamos a curva de geração após o serviço para comprovar o resultado.' }
+      ]
+    ]
+  };
+
+  var faq = {
+    heading: [
+      'Dúvidas frequentes sobre limpeza solar em ' + nome,
+      'Perguntas que todo mundo faz sobre limpeza de placas em ' + nome,
+      'O que você precisa saber antes de limpar suas placas em ' + nome
+    ],
+    items: [
+      [
+        { q: 'Com que frequência devo limpar as placas em ' + nome + '?', a: 'Recomendamos limpeza a cada 3 a 6 meses, dependendo da exposição a poeira, fuligem e fezes de aves. Em ' + nome + ' e ' + regiao + ', a média ideal é a cada 4 meses.' },
+        { q: 'A limpeza pode danificar as placas solares?', a: 'Não. Usamos água deionizada, escovas com cerdas especiais e produtos biodegradáveis. Nossa técnica preserva o vidro antirreflexo e não risca os módulos.' },
+        { q: 'Vocês atendem ' + nome + ' e cidades vizinhas?', a: 'Sim! Atendemos ' + nome + ' e todas as cidades do ' + regiao + '. Consulte nossa área de cobertura ou chame no WhatsApp para confirmar.' }
+      ],
+      [
+        { q: 'A chuva não limpa as placas naturalmente?', a: 'A chuva remove apenas parte da poeira superficial. Fuligem, fezes de aves e resíduos oleosos ficam grudados e formam uma crosta que a água da chuva não dissolve. Em ' + nome + ', a estiagem agrava o problema.' },
+        { q: 'Quanto tempo dura a limpeza?', a: 'Uma residência padrão (até 20 placas) leva de 2 a 3 horas. Sistemas maiores são avaliados no orçamento. O serviço é silencioso e não interfere na rotina da casa.' },
+        { q: 'Qual o valor da limpeza em ' + nome + '?', a: 'O valor depende do número de placas, altura do telhado e facilidade de acesso. Entre em contato pelo WhatsApp para um orçamento personalizado e sem compromisso.' }
+      ],
+      [
+        { q: 'A limpeza tem garantia?', a: 'Sim! Garantimos a satisfação. Se em até 7 dias você notar que a geração não melhorou, voltamos sem custo adicional. Atendemos ' + nome + ' e todo o ' + regiao + ' com esse compromisso.' },
+        { q: 'Como sei que minhas placas precisam de limpeza?', a: 'Se a conta de luz subiu sem explicação, se você vê manchas ou fezes de aves nos módulos, ou se faz mais de 6 meses desde a última limpeza — é hora de chamar. Fazemos uma avaliação gratuita em ' + nome + '.' },
+        { q: 'Vocês limpam placas de qualquer fabricante?', a: 'Sim. Trabalhamos com todos os fabricantes e modelos do mercado. Nossa técnica é compatível com qualquer tipo de módulo fotovoltaico, inclusive os de tecnologia PERC e Half-Cell.' }
+      ]
+    ]
+  };
+
+  var ctaFinal = {
+    heading: [
+      'Recupere a eficiência das suas placas solares em ' + nome,
+      'Não deixe seu investimento perder rendimento em ' + nome,
+      'Seu sistema solar pode render muito mais em ' + nome
+    ],
+    texto: [
+      'Atendimento profissional em ' + nome + ' e ' + regiao + '. Agende sua limpeza agora mesmo.',
+      'Equipe especializada pronta para atender ' + nome + ' e todo o ' + regiao + '. Orçamento rápido pelo WhatsApp.',
+      'Técnicos certificados em ' + nome + ' e ' + regiao + '. Avaliação gratuita e sem compromisso.'
+    ],
+    btn: ['💬 Falar com Especialista', '💬 Pedir Orçamento Agora', '💬 Agendar Avaliação Gratuita']
+  };
+
+  // ── 3. Aplicar conteúdo ─────────────────────────────────────
+
+  function set(id, html) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = html;
   }
 
-  // ── 4. Aplicar conteúdo variável ────────────────────────────
-  function aplicarBloco(blocoNome, seedData) {
-    const bloco = document.querySelector(`[data-content-block="${blocoNome}"]`);
-    if (!bloco) return;
+  // Hero
+  set('hero-heading', hero.heading[seed]);
+  set('hero-sub', hero.sub[seed]);
+  set('destaque-valor', hero.destaqueValor[seed]);
+  set('destaque-label', hero.destaqueLabel[seed]);
+  set('hero-cta', hero.cta[seed]);
 
-    // Itera sobre todos os data-* do bloco
-    Object.keys(seedData).forEach(key => {
-      if (key === 'cards' || key === 'perguntas') return; // tratado separadamente
+  // Prejuízo
+  set('prejuizo-heading', prejuizo.heading[seed]);
+  set('prejuizo-texto', prejuizo.texto[seed]);
 
-      const el = bloco.querySelector(`[data-${blocoNome}="${key}"]`);
-      if (el) {
-        el.innerHTML = preencher(seedData[key]);
-      }
-    });
+  // Solução
+  set('solucao-heading', solucao.heading[seed]);
+  set('solucao-texto', solucao.texto[seed]);
+  set('solucao-cta', solucao.cta[seed]);
 
-    // Cards de benefícios
-    if (seedData.cards) {
-      seedData.cards.forEach((card, i) => {
-        const idx = i + 1;
-        const iconeEl = bloco.querySelector(`[data-beneficio="${idx}"] .beneficio-icone`);
-        const tituloEl = bloco.querySelector(`[data-beneficio="${idx}-titulo"]`);
-        const textoEl = bloco.querySelector(`[data-beneficio="${idx}-texto"]`);
-
-        if (iconeEl) iconeEl.textContent = card.icone;
-        if (tituloEl) tituloEl.textContent = card.titulo;
-        if (textoEl) textoEl.innerHTML = preencher(card.texto);
-      });
-    }
-
-    // Perguntas do FAQ
-    if (seedData.perguntas) {
-      seedData.perguntas.forEach((item, i) => {
-        const idx = i + 1;
-        const perguntaEl = bloco.querySelector(`[data-faq="${idx}-pergunta"]`);
-        const respostaEl = bloco.querySelector(`[data-faq="${idx}-resposta"]`);
-
-        if (perguntaEl) perguntaEl.textContent = preencher(item.p);
-        if (respostaEl) respostaEl.innerHTML = preencher(item.r);
-      });
-    }
+  // Benefícios
+  set('beneficios-heading', beneficios.heading[seed]);
+  var bg = document.getElementById('beneficios-grid');
+  if (bg) {
+    var cards = beneficios.cards[seed];
+    bg.innerHTML = cards.map(function (c) {
+      return '<div class="beneficio-card"><span class="icon">' + c.icon + '</span><h3>' + c.title + '</h3><p>' + c.text + '</p></div>';
+    }).join('');
   }
 
-  // ── 5. Aplicar todos os blocos ──────────────────────────────
-  aplicarBloco('hero', conteudo.hero[seed]);
-  aplicarBloco('prejuizo', conteudo.prejuizo[seed]);
-  aplicarBloco('solucao', conteudo.solucao[seed]);
-  aplicarBloco('beneficios', conteudo.beneficios[seed]);
-  aplicarBloco('faq', conteudo.faq[seed]);
-  aplicarBloco('cta-final', conteudo.cta_final[seed]);
-
-  // ── 6. Aplicar fontes e cores por região ────────────────────
-  if (cidade.font_family) {
-    document.documentElement.style.setProperty('--font-family', cidade.font_family);
-  }
-  if (cidade.cor_destaque) {
-    document.documentElement.style.setProperty('--cor-destaque', cidade.cor_destaque);
-    const themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeMeta) themeMeta.setAttribute('content', cidade.cor_destaque);
+  // FAQ
+  set('faq-heading', faq.heading[seed]);
+  var fq = document.getElementById('faq-items');
+  if (fq) {
+    var items = faq.items[seed];
+    fq.innerHTML = items.map(function (item) {
+      return '<div style="background:var(--card-bg);border:1px solid rgba(245,166,35,0.15);border-radius:12px;padding:20px;margin-bottom:12px;"><h3 style="font-size:0.95rem;color:var(--primary);margin-bottom:8px;text-transform:none;letter-spacing:0;">' + item.q + '</h3><p style="color:#bbb;margin:0;font-size:0.85rem;">' + item.a + '</p></div>';
+    }).join('');
   }
 
-  // ── 7. Substituir placeholders residuais no HTML ────────────
-  document.body.innerHTML = preencher(document.body.innerHTML);
+  // CTA Final
+  set('cta-final-heading', ctaFinal.heading[seed]);
+  set('cta-final-texto', ctaFinal.texto[seed]);
+  set('cta-final-btn', ctaFinal.btn[seed]);
 
-  console.log(`[SNDLimp] Página de ${cidade.nome} carregada — seed ${seed}, região ${cidade.regiao_nome}`);
+  // ── 4. Atualizar document.title ──────────────────────────────
+  document.title = 'SNDLimp — Limpeza de Placas Solares em ' + nome + ' | ' + regiao;
+
+  console.log('[SNDLimp] Página injetada: ' + nome + ' (seed ' + seed + ', ' + regiao + ')');
 })();

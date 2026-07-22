@@ -5,55 +5,66 @@ $ErrorActionPreference = "Stop"
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $scriptDir
 
-# ── Carregar dados ────────────────────────────────────────────
-$json = Get-Content -Raw -Path "cidades.json" | ConvertFrom-Json
-$template = Get-Content -Raw -Path "template-cidade.html"
+$jsonPath = Join-Path $scriptDir "cidades.json"
+$templatePath = Join-Path $scriptDir "template-cidade.html"
+$outputDir = $scriptDir  # gera os HTMLs na mesma pasta
 
-$whatsappBase = $json.whatsapp_base
-
-# Criar pasta de saída se não existir
-$outDir = "."
-if (-not (Test-Path $outDir)) {
-    New-Item -ItemType Directory -Path $outDir | Out-Null
+if (-not (Test-Path $jsonPath)) {
+    Write-Error "cidades.json não encontrado em: $jsonPath"
+    exit 1
+}
+if (-not (Test-Path $templatePath)) {
+    Write-Error "template-cidade.html não encontrado em: $templatePath"
+    exit 1
 }
 
-$total = $json.cidades.Count
-$i = 0
+$cidades = Get-Content $jsonPath -Raw | ConvertFrom-Json
+$template = Get-Content $templatePath -Raw
 
-foreach ($cidade in $json.cidades) {
-    $i++
-    $slug = $cidade.slug
-    $nome = $cidade.nome
-    $regiaoSlug = $cidade.regiao
-    $regiao = $json.regioes.$regiaoSlug
-    $regiaoNome = $regiao.nome
-    $contentSeed = $cidade.content_seed
-    $fontFamily = $regiao.font_family
-    $corDestaque = $regiao.cor_destaque
+$geradas = 0
+$erros = 0
 
-    # WhatsApp com texto customizado
-    $whatsapp = $whatsappBase
+foreach ($cidade in $cidades) {
+    try {
+        $slug = $cidade.slug
+        $nome = $cidade.nome
+        $regiao = $cidade.regiao
+        $seed = $cidade.content_seed
+        $whatsapp = if ($cidade.whatsapp) { $cidade.whatsapp } else { "555196033200" }
 
-    # Substituir placeholders
-    $html = $template
-    $html = $html -replace '\{\{CIDADE_SLUG\}\}', $slug
-    $html = $html -replace '\{\{CIDADE_NOME\}\}', $nome
-    $html = $html -replace '\{\{REGIAO_SLUG\}\}', $regiaoSlug
-    $html = $html -replace '\{\{REGIAO_NOME\}\}', $regiaoNome
-    $html = $html -replace '\{\{CONTENT_SEED\}\}', $contentSeed
-    $html = $html -replace '\{\{WHATSAPP\}\}', $whatsapp
-    $html = $html -replace '\{\{FONT_FAMILY\}\}', $fontFamily
-    $html = $html -replace '\{\{COR_DESTAQUE\}\}', $corDestaque
+        # Monta o JSON de dados da cidade para o injector.js
+        $cidadeData = @{
+            nome = $nome
+            slug = $slug
+            regiao = $regiao
+            content_seed = [int]$seed
+            whatsapp = $whatsapp
+        } | ConvertTo-Json -Compress
 
-    # Salvar
-    $outPath = Join-Path $outDir "$slug.html"
-    $html | Out-File -FilePath $outPath -Encoding utf8 -NoNewline
+        $cidadeDataScript = "<script id=`"cidade-data`" type=`"application/json`">$cidadeData</script>"
 
-    Write-Host "[$i/$total] Gerado: $slug.html — $nome ($regiaoNome, seed=$contentSeed)"
+        # Substitui placeholders no template
+        $html = $template
+        $html = $html -replace '\{\{CIDADE_SLUG\}\}', $slug
+        $html = $html -replace '\{\{CIDADE_NOME\}\}', $nome
+        $html = $html -replace '\{\{REGIAO\}\}', $regiao
+        $html = $html -replace '\{\{CONTENT_SEED\}\}', $seed
+        $html = $html -replace '<!-- INJECT-CIDADE-DATA -->', $cidadeDataScript
+
+        $outputPath = Join-Path $outputDir "$slug.html"
+        $html | Out-File -FilePath $outputPath -Encoding utf8 -NoNewline
+
+        Write-Host "✅ $slug.html ($nome | $regiao | seed=$seed)"
+        $geradas++
+    }
+    catch {
+        Write-Warning "❌ Erro ao gerar $($cidade.slug): $_"
+        $erros++
+    }
 }
 
 Write-Host ""
-Write-Host "✅ $total páginas geradas com sucesso!"
-Write-Host "   TopBar e Footer: identidade fixa"
-Write-Host "   Conteúdo: 3 variantes (seed 0/1/2) — ~40% diferente entre cidades vizinhas"
-Write-Host "   Fontes e cores: variam por região"
+Write-Host "═══════════════════════════════════════"
+Write-Host "  TOTAL: $geradas páginas geradas"
+if ($erros -gt 0) { Write-Host "  ERROS: $erros" }
+Write-Host "═══════════════════════════════════════"
