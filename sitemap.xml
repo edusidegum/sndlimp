@@ -1,28 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- ═══ PÁGINAS PRINCIPAIS ═══ -->
   <url>
-    <loc>https://edusidegum.github.io/sndlimp/</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://edusidegum.github.io/sndlimp/index.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://edusidegum.github.io/sndlimp/folder_comercial.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://edusidegum.github.io/sndlimp/economia.html</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://edusidegum.github.io/sndlimp/galeria.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/economia.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/metodoieee3s.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ═══ BLOG — HUB ═══ -->
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/index.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ═══ BLOG — POSTS ═══ -->
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/soiling-losses-iea-pvps.html</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/perdas-evitaveis-ufsc-limpeza-brasil.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/kimber-2006-soiling-model-benchmark.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/costa-2021-soiling-brasil-validacao.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/mejia-2014-soiling-chuva-efetiva-california.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/ilse-2018-soiling-previsao-limpeza-efetiva.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/inmet-1991-2020-precipitacao-brasil-soiling.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/cbens-2018-gramado-10-porcento-limpeza.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/blog/posts/ufla-2024-sistema-automatizado-limpeza-solar.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══ CIDADES ATENDIDAS ═══ -->
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/novo-hamburgo.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/sao-leopoldo.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/campo-bom.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/sapiranga.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/estancia-velha.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/portao.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/lajeado.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/estrela.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/teutonia.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/encantado.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/arroio-do-meio.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/taquari.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://edusidegum.github.io/sndlimp/cidades/poco-das-antas.html</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
