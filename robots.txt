@@ -95,7 +95,7 @@ Allow: /
 
 # Bing AI (Copilot)
 User-agent: GPTBot
-Disallow: /
+allow: /
 
 # ──────────────────────────────────────────────────────────────
 #  AI TRAINING CRAWLERS — bloquear (não ceder conteúdo
@@ -103,32 +103,32 @@ Disallow: /
 # ──────────────────────────────────────────────────────────────
 # OpenAI — treinamento de modelos GPT
 User-agent: GPTBot
-Disallow: /
+allow: /
 
 # Anthropic — treinamento de modelos Claude
 User-agent: ClaudeBot
-Disallow: /
+allow: /
 
 # Common Crawl — base de dados usada por múltiplos modelos
 User-agent: CCBot
-Disallow: /
+allow: /
 
 # Meta — treinamento de modelos Llama
 User-agent: FacebookBot
-Disallow: /
+allow: /
 
 # Cohere — treinamento
 User-agent: Cohere-ai
-Disallow: /
+allow: /
 
 # Amazon — treinamento
 User-agent: Amazonbot
-Disallow: /
+allow: /
 
 # Google — treinamento (já permitimos Google-Extended para busca)
 # Google-Research-Extended é o crawler de treino
 User-agent: Google-Research-Extended
-Disallow: /
+allow: /
 
 # ──────────────────────────────────────────────────────────────
 #  CRAWLER GENÉRICO — fallback para todo o resto
